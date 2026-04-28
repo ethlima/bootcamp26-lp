@@ -1,6 +1,7 @@
 ---
 import Section from "./ui/Section.astro";
 import Icon from "./ui/Icon.astro";
+import Eyebrow from "./ui/Eyebrow.astro";
 import type { IconName } from "@/data/icons";
 import { features, cohort } from "@/data/content";
 
@@ -11,9 +12,7 @@ const accents = ["#e64a30", "#f18a2e", "#3dbed5", "#2ca89f", "#c7f73a"];
   <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
     <div class="lg:col-span-4">
-      <span class="text-xs uppercase tracking-[0.25em] font-mono font-semibold text-bootcamp-lime">
-        Cómo funciona
-      </span>
+      <Eyebrow>Cómo funciona</Eyebrow>
       <h2 class="font-display text-3xl md:text-4xl mt-4 mb-8 leading-[1.1]">
         Aprendizaje en vivo,<br />
         ejecución <span class="gradient-llama">continua</span>.

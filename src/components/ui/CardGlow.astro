@@ -1,0 +1,23 @@
+---
+/**
+ * Decorative radial gradient blob para esquinas de cards.
+ * Pasar el color como hex y opcionalmente clases extra
+ * (posición, tamaño, opacidad, hover).
+ */
+
+interface Props {
+  color: string;
+  class?: string;
+}
+
+const {
+  color,
+  class: className = "-top-12 -right-12 w-40 h-40 opacity-20",
+} = Astro.props;
+---
+
+<div
+  class={`absolute rounded-full blur-3xl pointer-events-none ${className}`}
+  style={`background: radial-gradient(circle, ${color}, transparent 70%);`}
+  aria-hidden="true"
+/>

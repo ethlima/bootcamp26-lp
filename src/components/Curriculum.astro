@@ -2,13 +2,13 @@
 import Section from "./ui/Section.astro";
 import Button from "./ui/Button.astro";
 import Icon from "./ui/Icon.astro";
+import Eyebrow from "./ui/Eyebrow.astro";
+import CardGlow from "./ui/CardGlow.astro";
 import { modules, site } from "@/data/content";
 ---
 
 <Section id="curriculum" variant="muted">
-  <span class="text-xs uppercase tracking-[0.25em] font-mono font-semibold text-bootcamp-lime">
-    Currículum
-  </span>
+  <Eyebrow>Currículum</Eyebrow>
   <h2 class="font-display text-3xl md:text-5xl mt-4 mb-3 leading-[1.1]">
     4 módulos.<br />
     1 <span class="gradient-llama">dApp deployada</span>.
@@ -24,9 +24,9 @@ import { modules, site } from "@/data/content";
           class="card p-8 group relative overflow-hidden"
           style={`--accent-from: ${mod.accent.from}; --accent-to: ${mod.accent.to};`}
         >
-          <div
-            class="absolute -top-20 -right-20 w-48 h-48 rounded-full opacity-15 blur-3xl group-hover:opacity-30 transition-opacity duration-500"
-            style={`background: radial-gradient(circle, ${mod.accent.from}, transparent 70%);`}
+          <CardGlow
+            color={mod.accent.from}
+            class="-top-20 -right-20 w-48 h-48 opacity-15 group-hover:opacity-30 transition-opacity duration-500"
           />
 
           <div class="relative">
