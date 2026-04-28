@@ -1,5 +1,6 @@
 ---
 import Button from "./ui/Button.astro";
+import ThemeToggle from "./ui/ThemeToggle.astro";
 import { getContent, isLocale, getOtherLocale, DEFAULT_LOCALE } from "@/i18n";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -30,9 +31,10 @@ const otherUrl = getRelativeLocaleUrl(otherLang, "");
     </div>
 
     <div class="flex items-center gap-3">
+      <ThemeToggle />
       <a
         href={otherUrl}
-        class="text-xs font-mono font-semibold uppercase tracking-widest text-fg-muted hover:text-white transition px-2 py-1 rounded-md border border-border-strong"
+        class="text-xs font-mono font-semibold uppercase tracking-widest text-fg-muted hover:text-fg transition px-2 py-1 rounded-md border border-border-strong"
         aria-label={`Switch to ${otherLang.toUpperCase()}`}
       >
         {t.ui.switchTo}
