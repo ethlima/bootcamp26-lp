@@ -1,5 +1,6 @@
 ---
 import Section from "./ui/Section.astro";
+import Icon from "./ui/Icon.astro";
 import { audience } from "@/data/content";
 ---
 
@@ -19,9 +20,7 @@ import { audience } from "@/data/content";
       </div>
       <div class="relative">
         <div class="w-12 h-12 rounded-2xl bg-coral/15 border border-coral/40 flex items-center justify-center mb-6">
-          <svg class="w-5 h-5 text-coral" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-          </svg>
+          <Icon name="code" class="w-5 h-5 text-coral" />
         </div>
         <h3 class="font-display text-2xl font-bold mb-5">{audience.technical.title}</h3>
         <ul class="space-y-3 text-fg-muted">
@@ -44,9 +43,7 @@ import { audience } from "@/data/content";
       </div>
       <div class="relative">
         <div class="w-12 h-12 rounded-2xl bg-cyan/15 border border-cyan/40 flex items-center justify-center mb-6">
-          <svg class="w-5 h-5 text-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 0 0-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 0 1 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm6 3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
-          </svg>
+          <Icon name="users" class="w-5 h-5 text-cyan" />
         </div>
         <h3 class="font-display text-2xl font-bold mb-5">{audience.nonTechnical.title}</h3>
         <ul class="space-y-3 text-fg-muted">
@@ -65,9 +62,7 @@ import { audience } from "@/data/content";
 
   <!-- Requisitos -->
   <div class="mt-6 p-5 rounded-2xl border border-bootcamp-lime/30 bg-bootcamp-lime/5 flex items-start gap-4">
-    <svg class="w-5 h-5 text-bootcamp-lime mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
-    </svg>
+    <Icon name="info" class="w-5 h-5 text-bootcamp-lime mt-0.5 flex-shrink-0" />
     <p class="text-sm text-fg-muted">
       <strong class="text-white">Requisitos:</strong> {audience.requirements}
     </p>

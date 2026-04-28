@@ -1,6 +1,7 @@
 ---
 import Section from "./ui/Section.astro";
 import Button from "./ui/Button.astro";
+import Icon from "./ui/Icon.astro";
 import { modules, site } from "@/data/content";
 ---
 
@@ -54,9 +55,7 @@ import { modules, site } from "@/data/content";
   <div class="text-center mt-12">
     <Button href={site.programPdf} variant="ghost" size="lg" external>
       Ver programa completo (PDF)
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-      </svg>
+      <Icon name="arrow-right" class="w-4 h-4" />
     </Button>
   </div>
 </Section>

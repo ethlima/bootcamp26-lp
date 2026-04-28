@@ -1,5 +1,6 @@
 ---
 import Section from "./ui/Section.astro";
+import Icon from "./ui/Icon.astro";
 import { outcomes } from "@/data/content";
 
 const accents = ["#e64a30", "#f18a2e", "#3dbed5", "#2ca89f", "#c7f73a"];
@@ -23,18 +24,9 @@ const accents = ["#e64a30", "#f18a2e", "#3dbed5", "#2ca89f", "#c7f73a"];
           >
             <div
               class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 border"
-              style={`background-color: ${color}22; border-color: ${color}66;`}
+              style={`background-color: ${color}22; border-color: ${color}66; color: ${color};`}
             >
-              <svg
-                class="w-5 h-5"
-                style={`color: ${color}`}
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-                viewBox="0 0 24 24"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
+              <Icon name="check" class="w-5 h-5" strokeWidth={3} />
             </div>
             <p class="pt-1.5 font-medium">{outcome}</p>
           </div>
