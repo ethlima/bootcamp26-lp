@@ -21,14 +21,17 @@ export const brandColors = {
 
 /**
  * Rotación de acentos usada en grids/listas para variar color por item.
- * Orden inspirado en el gradiente del logo (coral → naranja → cian → teal → lime).
+ * Orden inspirado en el gradiente del logo (coral → naranja → cian → teal).
+ *
+ * No incluye bootcamp-lime: como text/icon-color sobre cream (light theme)
+ * pierde contraste por completo. Si una lista tiene 5+ ítems, el 5º cicla
+ * de vuelta a coral.
  */
 export const accentPalette = [
   brandColors.coral,
   brandColors.orange,
   brandColors.cyan,
   brandColors.teal,
-  brandColors.bootcampLime,
 ] as const;
 
 /**
