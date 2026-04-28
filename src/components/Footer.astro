@@ -28,9 +28,9 @@ const currentYear = new Date().getFullYear();
           {t.footer.ecosystemLabel}
         </p>
         <ul class="space-y-2.5 text-sm">
-          <li><a href={t.ecosystem.parent.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{t.ecosystem.parent.name}</a></li>
-          <li><a href={t.ecosystem.education.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{t.ecosystem.education.name}</a></li>
-          <li><a href={t.ecosystem.event.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{t.ecosystem.event.name}</a></li>
+          <li><a href={t.ecosystem.parent.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-fg transition">{t.ecosystem.parent.name}</a></li>
+          <li><a href={t.ecosystem.education.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-fg transition">{t.ecosystem.education.name}</a></li>
+          <li><a href={t.ecosystem.event.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-fg transition">{t.ecosystem.event.name}</a></li>
         </ul>
       </div>
 
@@ -39,12 +39,12 @@ const currentYear = new Date().getFullYear();
         <p class="text-xs uppercase tracking-widest text-fg-muted font-mono font-semibold mb-4">
           {t.footer.contactLabel}
         </p>
-        <a href={`mailto:${t.site.contactEmail}`} class="text-sm text-fg-muted hover:text-white transition block mb-5">
+        <a href={`mailto:${t.site.contactEmail}`} class="text-sm text-fg-muted hover:text-fg transition block mb-5">
           {t.site.contactEmail}
         </a>
         <div class="flex flex-wrap gap-3">
           <a href={t.social.telegram} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-bootcamp-lime hover:text-bootcamp-lime transition">Telegram</a>
-          <a href={t.social.x} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-white hover:text-white transition">X</a>
+          <a href={t.social.x} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-fg hover:text-fg transition">X</a>
           <a href={t.social.linkedin} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-cyan hover:text-cyan transition">LinkedIn</a>
           <a href={t.social.instagram} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-coral hover:text-coral transition">Instagram</a>
         </div>
