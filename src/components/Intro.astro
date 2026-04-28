@@ -1,44 +1,41 @@
 ---
 import Section from "./ui/Section.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.intro;
 ---
 
 <Section>
   <div class="max-w-4xl">
-    <Eyebrow>Descripción general</Eyebrow>
+    <Eyebrow>{s.eyebrow}</Eyebrow>
     <h2 class="font-display text-3xl md:text-5xl mt-4 mb-8 leading-[1.1]">
-      Pasa de los <span class="gradient-llama">fundamentos</span> a una dApp
-      completa en Arbitrum Stylus.
+      {s.headingPre}<span class="gradient-llama">{s.headingHighlight}</span>{s.headingPost}
     </h2>
     <div class="space-y-5 text-lg text-fg-muted leading-relaxed">
-      <p>
-        Bootcamp práctico orientado a desarrollo Web3, donde pasarás de
-        fundamentos a implementación real construyendo una dApp completa en
-        Arbitrum Stylus.
-      </p>
-      <p>
-        Trabajarás con tecnologías actuales del ecosistema Ethereum, con foco en
-        ejecución y no solo teoría.
-      </p>
+      <p>{s.body1}</p>
+      <p>{s.body2}</p>
     </div>
 
     <!-- Stats row -->
     <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border">
       <div class="bg-ink p-6">
         <p class="font-display text-3xl md:text-4xl gradient-llama">6</p>
-        <p class="text-xs uppercase tracking-widest text-fg-muted mt-1">semanas</p>
+        <p class="text-xs uppercase tracking-widest text-fg-muted mt-1">{s.statWeeks}</p>
       </div>
       <div class="bg-ink p-6">
         <p class="font-display text-3xl md:text-4xl text-coral">4</p>
-        <p class="text-xs uppercase tracking-widest text-fg-muted mt-1">módulos</p>
+        <p class="text-xs uppercase tracking-widest text-fg-muted mt-1">{s.statModules}</p>
       </div>
       <div class="bg-ink p-6">
         <p class="font-display text-3xl md:text-4xl text-cyan">1</p>
-        <p class="text-xs uppercase tracking-widest text-fg-muted mt-1">dApp deployada</p>
+        <p class="text-xs uppercase tracking-widest text-fg-muted mt-1">{s.statDapp}</p>
       </div>
       <div class="bg-ink p-6">
         <p class="font-display text-3xl md:text-4xl text-bootcamp-lime">∞</p>
-        <p class="text-xs uppercase tracking-widest text-fg-muted mt-1">comunidad</p>
+        <p class="text-xs uppercase tracking-widest text-fg-muted mt-1">{s.statCommunity}</p>
       </div>
     </div>
   </div>

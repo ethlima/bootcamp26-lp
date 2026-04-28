@@ -2,23 +2,27 @@
 import Section from "./ui/Section.astro";
 import Icon from "./ui/Icon.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
-import { outcomes } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
 import { accentPalette } from "@/data/tokens";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.outcomes;
 ---
 
 <Section>
-  <Eyebrow>Resultados</Eyebrow>
+  <Eyebrow>{s.eyebrow}</Eyebrow>
   <h2 class="font-display text-3xl md:text-5xl mt-4 mb-12 leading-[1.1]">
-    Qué te llevas al terminar.
+    {s.heading}
   </h2>
 
   <div class="grid sm:grid-cols-2 gap-4 reveal-stagger">
     {
-      outcomes.map((outcome, i) => {
+      t.outcomes.map((outcome, i) => {
         const color = accentPalette[i % accentPalette.length];
         return (
           <div
-            class={`card p-6 flex items-start gap-4 ${i === outcomes.length - 1 ? "sm:col-span-2" : ""}`}
+            class={`card p-6 flex items-start gap-4 ${i === t.outcomes.length - 1 ? "sm:col-span-2" : ""}`}
           >
             <div
               class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 border"

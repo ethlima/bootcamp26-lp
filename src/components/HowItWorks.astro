@@ -3,18 +3,22 @@ import Section from "./ui/Section.astro";
 import Icon from "./ui/Icon.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
 import type { IconName } from "@/data/icons";
-import { features, cohort } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
 import { accentPalette } from "@/data/tokens";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.howItWorks;
 ---
 
-<Section id="como-funciona" variant="muted">
+<Section id="how-it-works" variant="muted">
   <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
     <div class="lg:col-span-4">
-      <Eyebrow>Cómo funciona</Eyebrow>
+      <Eyebrow>{s.eyebrow}</Eyebrow>
       <h2 class="font-display text-3xl md:text-4xl mt-4 mb-8 leading-[1.1]">
-        Aprendizaje en vivo,<br />
-        ejecución <span class="gradient-llama">continua</span>.
+        {s.headingLine1}<br />
+        {s.headingLine2Pre}<span class="gradient-llama">{s.headingLine2Highlight}</span>{s.headingLine2Post}
       </h2>
 
       <div class="space-y-5 mt-10">
@@ -23,8 +27,8 @@ import { accentPalette } from "@/data/tokens";
             <Icon name="clock" class="w-5 h-5 text-coral" />
           </div>
           <div>
-            <p class="text-xs text-fg-muted uppercase tracking-wider">Duración</p>
-            <p class="font-semibold text-lg">{cohort.weeks} semanas</p>
+            <p class="text-xs text-fg-muted uppercase tracking-wider">{s.durationLabel}</p>
+            <p class="font-semibold text-lg">{t.cohort.weeks} {t.cohort.weeksLabel}</p>
           </div>
         </div>
         <div class="flex items-center gap-4">
@@ -32,8 +36,8 @@ import { accentPalette } from "@/data/tokens";
             <Icon name="signal" class="w-5 h-5 text-cyan" />
           </div>
           <div>
-            <p class="text-xs text-fg-muted uppercase tracking-wider">Formato</p>
-            <p class="font-semibold text-lg">{cohort.format}</p>
+            <p class="text-xs text-fg-muted uppercase tracking-wider">{s.formatLabel}</p>
+            <p class="font-semibold text-lg">{t.cohort.format}</p>
           </div>
         </div>
       </div>
@@ -41,9 +45,9 @@ import { accentPalette } from "@/data/tokens";
 
     <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4 reveal-stagger">
       {
-        features.map((feature, i) => (
+        t.features.map((feature, i) => (
           <div
-            class={`card p-6 ${i === features.length - 1 ? "sm:col-span-2" : ""}`}
+            class={`card p-6 ${i === t.features.length - 1 ? "sm:col-span-2" : ""}`}
           >
             <div
               class="w-11 h-11 rounded-xl flex items-center justify-center mb-4 border"

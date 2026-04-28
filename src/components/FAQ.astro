@@ -1,19 +1,23 @@
 ---
 import Section from "./ui/Section.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
-import { faqs } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.faq;
 ---
 
 <Section id="faq" variant="muted">
   <div class="max-w-3xl mx-auto">
-    <Eyebrow>FAQ</Eyebrow>
+    <Eyebrow>{s.eyebrow}</Eyebrow>
     <h2 class="font-display text-3xl md:text-5xl mt-4 mb-12 leading-[1.1]">
-      Preguntas <span class="gradient-llama">frecuentes</span>.
+      {s.headingPre}<span class="gradient-llama">{s.headingHighlight}</span>{s.headingPost}
     </h2>
 
     <div class="space-y-3 reveal-stagger">
       {
-        faqs.map((faq) => (
+        t.faqs.map((faq) => (
           <details class="card p-6 group">
             <summary class="flex items-center justify-between gap-4 font-semibold text-base md:text-lg">
               <span>{faq.question}</span>

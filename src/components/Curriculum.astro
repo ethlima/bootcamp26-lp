@@ -4,22 +4,26 @@ import Button from "./ui/Button.astro";
 import Icon from "./ui/Icon.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
 import CardGlow from "./ui/CardGlow.astro";
-import { modules, site } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.curriculum;
 ---
 
 <Section id="curriculum" variant="muted">
-  <Eyebrow>Currículum</Eyebrow>
+  <Eyebrow>{s.eyebrow}</Eyebrow>
   <h2 class="font-display text-3xl md:text-5xl mt-4 mb-3 leading-[1.1]">
-    4 módulos.<br />
-    1 <span class="gradient-llama">dApp deployada</span>.
+    {s.headingLine1}<br />
+    {s.headingLine2Pre}<span class="gradient-llama">{s.headingLine2Highlight}</span>{s.headingLine2Post}
   </h2>
   <p class="text-lg text-fg-muted max-w-2xl mb-12">
-    Cada módulo construye sobre el anterior. Sales con código real en producción.
+    {s.body}
   </p>
 
   <div class="grid md:grid-cols-2 gap-5 reveal-stagger">
     {
-      modules.map((mod) => (
+      t.modules.map((mod) => (
         <div
           class="card p-8 group relative overflow-hidden"
           style={`--accent-from: ${mod.accent.from}; --accent-to: ${mod.accent.to};`}
@@ -35,7 +39,7 @@ import { modules, site } from "@/data/content";
                 class="font-mono text-sm font-semibold tracking-wider"
                 style={`color: ${mod.accent.from};`}
               >
-                MÓDULO {mod.number}
+                {s.modulePrefix} {mod.number}
               </span>
               <span
                 class="text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full border font-mono font-semibold"
@@ -53,8 +57,8 @@ import { modules, site } from "@/data/content";
   </div>
 
   <div class="text-center mt-12">
-    <Button href={site.programPdf} variant="ghost" size="lg" external>
-      Ver programa completo (PDF)
+    <Button href={t.site.programPdf} variant="ghost" size="lg" external>
+      {t.ui.programPdfFull}
       <Icon name="arrow-right" class="w-4 h-4" />
     </Button>
   </div>

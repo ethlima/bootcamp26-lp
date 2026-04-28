@@ -1,8 +1,12 @@
 ---
 import Button from "./ui/Button.astro";
 import Icon from "./ui/Icon.astro";
-import { site, cohort } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
 import { brandColors } from "@/data/tokens";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.finalCta;
 ---
 
 <section class="relative py-24 md:py-32 px-6 border-t border-border overflow-hidden glow-hero dotted-bg">
@@ -14,22 +18,22 @@ import { brandColors } from "@/data/tokens";
     </div>
 
     <h2 class="font-display text-4xl md:text-6xl lg:text-7xl mb-6 leading-[1.05]">
-      ¿Listo para <span class="gradient-llama">construir</span>?
+      {s.headingPre}<span class="gradient-llama">{s.headingHighlight}</span>{s.headingPost}
     </h2>
     <p class="text-lg md:text-xl text-fg-muted mb-3">
-      Únete al bootcamp y comienza a crear en Web3.
+      {s.body}
     </p>
     <p class="text-sm text-fg-muted mb-10">
-      <strong class="text-white">Próxima cohorte:</strong> {cohort.startDate}
+      <strong class="text-white">{s.nextCohortLabel}</strong> {t.cohort.startDate}
     </p>
 
     <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <Button href={site.applyUrl} external variant="primary" size="lg">
-        Aplicar ahora
+      <Button href={t.site.applyUrl} external variant="primary" size="lg">
+        {t.ui.applyNow}
         <Icon name="arrow-right" class="w-4 h-4" strokeWidth={2.5} />
       </Button>
-      <Button href={`mailto:${site.contactEmail}`} variant="ghost" size="lg">
-        Tengo una pregunta
+      <Button href={`mailto:${t.site.contactEmail}`} variant="ghost" size="lg">
+        {t.ui.iHaveAQuestion}
       </Button>
     </div>
   </div>

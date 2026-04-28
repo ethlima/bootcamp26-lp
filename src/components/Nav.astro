@@ -1,11 +1,17 @@
 ---
 import Button from "./ui/Button.astro";
-import { navLinks, site } from "@/data/content";
+import { getContent, isLocale, getOtherLocale, DEFAULT_LOCALE } from "@/i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const otherLang = getOtherLocale(lang);
+const otherUrl = getRelativeLocaleUrl(otherLang, "");
 ---
 
 <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-[#0b0717cc] border-b border-border">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-2.5 group">
+    <a href={getRelativeLocaleUrl(lang, "")} class="flex items-center gap-2.5 group">
       <img
         src="/assets/logo.webp"
         alt="Ethereum Lima"
@@ -15,7 +21,7 @@ import { navLinks, site } from "@/data/content";
 
     <div class="hidden md:flex items-center gap-7 text-sm text-fg-muted">
       {
-        navLinks.map((link) => (
+        t.navLinks.map((link) => (
           <a href={link.href} class="nav-link hover:text-white transition">
             {link.label}
           </a>
@@ -23,6 +29,15 @@ import { navLinks, site } from "@/data/content";
       }
     </div>
 
-    <Button href={site.applyUrl} external size="md">Aplicar</Button>
+    <div class="flex items-center gap-3">
+      <a
+        href={otherUrl}
+        class="text-xs font-mono font-semibold uppercase tracking-widest text-fg-muted hover:text-white transition px-2 py-1 rounded-md border border-border-strong"
+        aria-label={`Switch to ${otherLang.toUpperCase()}`}
+      >
+        {t.ui.switchTo}
+      </a>
+      <Button href={t.site.applyUrl} external size="md">{t.ui.apply}</Button>
+    </div>
   </div>
 </nav>

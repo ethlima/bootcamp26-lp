@@ -13,19 +13,18 @@ import Process from "@/components/Process.astro";
 import FAQ from "@/components/FAQ.astro";
 import FinalCTA from "@/components/FinalCTA.astro";
 import Footer from "@/components/Footer.astro";
-import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
+import { getContent } from "@/i18n";
 
-const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
-const t = getContent(lang);
+const t = getContent("en");
 
 const courseSchema = {
   "@context": "https://schema.org",
   "@type": "Course",
   name: t.site.name,
   description: t.site.description,
-  url: t.site.url,
+  url: `${t.site.url}/en/`,
   image: `${t.site.url}/assets/llama-bootcamp.jpg`,
-  inLanguage: lang,
+  inLanguage: "en",
   provider: {
     "@type": "Organization",
     name: t.ecosystem.parent.name,
@@ -47,10 +46,10 @@ const courseSchema = {
     courseMode: "Online",
     startDate: "2026-05-30",
     endDate: "2026-07-04",
-    inLanguage: lang,
+    inLanguage: "en",
     location: {
       "@type": "VirtualLocation",
-      url: t.site.url,
+      url: `${t.site.url}/en/`,
     },
   },
   offers: {

@@ -3,14 +3,18 @@ import Section from "./ui/Section.astro";
 import Icon from "./ui/Icon.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
 import CardGlow from "./ui/CardGlow.astro";
-import { audience } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
 import { brandColors } from "@/data/tokens";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.audience;
 ---
 
-<Section id="para-quien">
-  <Eyebrow>Audiencia</Eyebrow>
+<Section id="audience">
+  <Eyebrow>{s.eyebrow}</Eyebrow>
   <h2 class="font-display text-3xl md:text-5xl mt-4 mb-12 leading-[1.1]">
-    ¿Para quién es?
+    {s.heading}
   </h2>
 
   <div class="grid md:grid-cols-2 gap-5 reveal-stagger">
@@ -21,10 +25,10 @@ import { brandColors } from "@/data/tokens";
         <div class="w-12 h-12 rounded-2xl bg-coral/15 border border-coral/40 flex items-center justify-center mb-6">
           <Icon name="code" class="w-5 h-5 text-coral" />
         </div>
-        <h3 class="font-display text-2xl font-bold mb-5">{audience.technical.title}</h3>
+        <h3 class="font-display text-2xl font-bold mb-5">{t.audience.technical.title}</h3>
         <ul class="space-y-3 text-fg-muted">
           {
-            audience.technical.items.map((item) => (
+            t.audience.technical.items.map((item) => (
               <li class="flex items-start gap-3">
                 <span class="text-coral mt-0.5 font-bold">→</span>
                 <span>{item}</span>
@@ -42,10 +46,10 @@ import { brandColors } from "@/data/tokens";
         <div class="w-12 h-12 rounded-2xl bg-cyan/15 border border-cyan/40 flex items-center justify-center mb-6">
           <Icon name="users" class="w-5 h-5 text-cyan" />
         </div>
-        <h3 class="font-display text-2xl font-bold mb-5">{audience.nonTechnical.title}</h3>
+        <h3 class="font-display text-2xl font-bold mb-5">{t.audience.nonTechnical.title}</h3>
         <ul class="space-y-3 text-fg-muted">
           {
-            audience.nonTechnical.items.map((item) => (
+            t.audience.nonTechnical.items.map((item) => (
               <li class="flex items-start gap-3">
                 <span class="text-cyan mt-0.5 font-bold">→</span>
                 <span>{item}</span>
@@ -61,7 +65,7 @@ import { brandColors } from "@/data/tokens";
   <div class="mt-6 p-5 rounded-2xl border border-bootcamp-lime/30 bg-bootcamp-lime/5 flex items-start gap-4">
     <Icon name="info" class="w-5 h-5 text-bootcamp-lime mt-0.5 flex-shrink-0" />
     <p class="text-sm text-fg-muted">
-      <strong class="text-white">Requisitos:</strong> {audience.requirements}
+      <strong class="text-white">{s.requirementsLabel}</strong> {t.audience.requirements}
     </p>
   </div>
 </Section>

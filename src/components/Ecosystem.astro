@@ -1,35 +1,38 @@
 ---
 import Section from "./ui/Section.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
-import { sponsor, allies, ecosystem } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.ecosystem;
 ---
 
 <Section variant="muted">
   <div class="text-center max-w-3xl mx-auto">
-    <Eyebrow>Ecosistema</Eyebrow>
+    <Eyebrow>{s.eyebrow}</Eyebrow>
     <h2 class="font-display text-3xl md:text-5xl mt-4 mb-5 leading-[1.1]">
-      Construido con <span class="gradient-llama">el ecosistema</span>.
+      {s.headingPre}<span class="gradient-llama">{s.headingHighlight}</span>{s.headingPost}
     </h2>
     <p class="text-fg-muted mb-14">
-      Colaboración con comunidades y proyectos del ecosistema Web3 para potenciar
-      aprendizaje y conexión.
+      {s.body}
     </p>
   </div>
 
   <!-- Sponsor principal -->
   <div class="text-center mb-14">
     <p class="text-[10px] uppercase tracking-[0.3em] font-mono text-fg-muted mb-6">
-      Sponsor principal
+      {s.sponsorLabel}
     </p>
     <a
-      href={sponsor.url}
+      href={t.sponsor.url}
       target="_blank"
       rel="noopener"
       class="inline-flex items-center justify-center px-12 py-7 rounded-2xl border border-border bg-ink hover:border-bootcamp-blue/50 transition-colors group"
     >
       <!-- TODO: reemplazar por <img src="/assets/arbitrum.svg" class="h-10"> -->
       <span class="font-display text-3xl font-bold tracking-tight group-hover:text-bootcamp-blue transition-colors">
-        Arbitrum
+        {t.sponsor.name}
       </span>
     </a>
   </div>
@@ -37,11 +40,11 @@ import { sponsor, allies, ecosystem } from "@/data/content";
   <!-- Aliados -->
   <div class="text-center mb-14">
     <p class="text-[10px] uppercase tracking-[0.3em] font-mono text-fg-muted mb-6">
-      Aliados
+      {s.alliesLabel}
     </p>
     <div class="flex flex-wrap items-center justify-center gap-4">
       {
-        allies.map((ally) => (
+        t.allies.map((ally) => (
           <a
             href={ally.url}
             class="px-8 py-5 rounded-xl border border-border bg-ink hover:border-border-strong transition-colors"
@@ -56,17 +59,17 @@ import { sponsor, allies, ecosystem } from "@/data/content";
   <!-- Vínculo con el ecosistema ETH Lima -->
   <div class="max-w-3xl mx-auto pt-10 border-t border-border">
     <p class="text-center text-sm text-fg-muted mb-5">
-      Parte del ecosistema <strong class="text-white">Ethereum Lima</strong>
+      {s.partOf} <strong class="text-white">{t.ecosystem.parent.name}</strong>
     </p>
     <div class="flex flex-wrap items-center justify-center gap-3">
-      <a href={ecosystem.parent.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-border hover:border-coral hover:text-coral transition-colors">
+      <a href={t.ecosystem.parent.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-border hover:border-coral hover:text-coral transition-colors">
         ethlima.org
       </a>
-      <a href={ecosystem.education.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-border hover:border-cyan hover:text-cyan transition-colors">
-        Campus virtual
+      <a href={t.ecosystem.education.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-border hover:border-cyan hover:text-cyan transition-colors">
+        {t.ecosystem.education.name}
       </a>
-      <a href={ecosystem.event.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-border hover:border-bootcamp-lime hover:text-bootcamp-lime transition-colors">
-        ETH Lima Day
+      <a href={t.ecosystem.event.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-border hover:border-bootcamp-lime hover:text-bootcamp-lime transition-colors">
+        {t.ecosystem.event.name}
       </a>
     </div>
   </div>

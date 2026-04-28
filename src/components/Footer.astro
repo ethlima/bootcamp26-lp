@@ -1,5 +1,8 @@
 ---
-import { site, social, ecosystem } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
 
 const currentYear = new Date().getFullYear();
 ---
@@ -14,46 +17,46 @@ const currentYear = new Date().getFullYear();
           <img src="/assets/logo.webp" alt="Ethereum Lima" class="h-8 w-auto" />
         </a>
         <p class="text-sm text-fg-muted leading-relaxed">
-          Comunidad y educación blockchain en Lima.<br />
-          Construyendo el ecosistema Web3 en Perú.
+          {t.footer.tagline}<br />
+          {t.footer.taglineSubtitle}
         </p>
       </div>
 
       <!-- Ecosistema -->
       <div>
         <p class="text-xs uppercase tracking-widest text-fg-muted font-mono font-semibold mb-4">
-          Ecosistema
+          {t.footer.ecosystemLabel}
         </p>
         <ul class="space-y-2.5 text-sm">
-          <li><a href={ecosystem.parent.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{ecosystem.parent.name}</a></li>
-          <li><a href={ecosystem.education.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{ecosystem.education.name}</a></li>
-          <li><a href={ecosystem.event.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{ecosystem.event.name}</a></li>
+          <li><a href={t.ecosystem.parent.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{t.ecosystem.parent.name}</a></li>
+          <li><a href={t.ecosystem.education.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{t.ecosystem.education.name}</a></li>
+          <li><a href={t.ecosystem.event.url} target="_blank" rel="noopener" class="text-fg-muted hover:text-white transition">{t.ecosystem.event.name}</a></li>
         </ul>
       </div>
 
       <!-- Contacto + redes -->
       <div>
         <p class="text-xs uppercase tracking-widest text-fg-muted font-mono font-semibold mb-4">
-          Contacto
+          {t.footer.contactLabel}
         </p>
-        <a href={`mailto:${site.contactEmail}`} class="text-sm text-fg-muted hover:text-white transition block mb-5">
-          {site.contactEmail}
+        <a href={`mailto:${t.site.contactEmail}`} class="text-sm text-fg-muted hover:text-white transition block mb-5">
+          {t.site.contactEmail}
         </a>
         <div class="flex flex-wrap gap-3">
-          <a href={social.telegram} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-bootcamp-lime hover:text-bootcamp-lime transition">Telegram</a>
-          <a href={social.x} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-white hover:text-white transition">X</a>
-          <a href={social.linkedin} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-cyan hover:text-cyan transition">LinkedIn</a>
-          <a href={social.instagram} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-coral hover:text-coral transition">Instagram</a>
+          <a href={t.social.telegram} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-bootcamp-lime hover:text-bootcamp-lime transition">Telegram</a>
+          <a href={t.social.x} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-white hover:text-white transition">X</a>
+          <a href={t.social.linkedin} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-cyan hover:text-cyan transition">LinkedIn</a>
+          <a href={t.social.instagram} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-coral hover:text-coral transition">Instagram</a>
         </div>
       </div>
     </div>
 
     <div class="pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
       <p class="text-xs text-fg-muted">
-        © {currentYear} Ethereum Lima. Construyendo el ecosistema Web3 en Perú.
+        © {currentYear} {t.footer.copyrightSuffix}
       </p>
       <p class="text-xs text-fg-muted font-mono">
-        Hecho con <span class="gradient-llama">Ξ</span> en Lima
+        {t.footer.madeIn} <span class="gradient-llama">Ξ</span> {t.footer.madeInSuffix}
       </p>
     </div>
   </div>

@@ -1,7 +1,10 @@
 ---
 import Button from "./ui/Button.astro";
 import Icon from "./ui/Icon.astro";
-import { site, cohort } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
 ---
 
 <section
@@ -16,39 +19,38 @@ import { site, cohort } from "@/data/content";
         <div class="hero-anim inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border-strong bg-white/5 backdrop-blur-sm text-xs md:text-sm text-fg-muted mb-7"
           style="animation-delay: 0ms;">
           <span class="w-2 h-2 rounded-full bg-bootcamp-lime animate-pulse-dot"></span>
-          {cohort.label} · aplicaciones abiertas
+          {t.cohort.label} · {t.cohort.applicationsOpen}
         </div>
 
         <h1 class="hero-anim font-display text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[1.02] mb-6"
           style="animation-delay: 120ms;">
-          De cero a tu<br />
-          primera <span class="gradient-llama">dApp</span><br />
-          en Arbitrum.
+          {t.hero.headingLine1}<br />
+          {t.hero.headingLine2Pre}<span class="gradient-llama">{t.hero.headingLine2Highlight}</span><br />
+          {t.hero.headingLine3}
         </h1>
 
         <p class="hero-anim text-lg md:text-xl text-fg-muted max-w-xl mb-7 leading-relaxed"
           style="animation-delay: 280ms;">
-          Bootcamp intensivo de {cohort.weeks} semanas para construir en blockchain
-          con Ethereum, Solidity, Rust y Arbitrum Stylus.
+          {t.hero.description}
         </p>
 
         <div class="hero-anim flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-fg-muted mb-9"
           style="animation-delay: 400ms;">
-          <span class="font-semibold text-white">{cohort.weeks} semanas</span>
+          <span class="font-semibold text-white">{t.cohort.weeks} {t.cohort.weeksLabel}</span>
           <span class="opacity-30">·</span>
-          <span>{cohort.startLabel} — {cohort.endLabel}</span>
+          <span>{t.cohort.startLabel} — {t.cohort.endLabel}</span>
           <span class="opacity-30">·</span>
-          <span>{cohort.format}</span>
+          <span>{t.cohort.format}</span>
         </div>
 
         <div class="hero-anim flex flex-col sm:flex-row gap-3"
           style="animation-delay: 520ms;">
-          <Button href={site.applyUrl} external variant="primary" size="lg">
-            Aplicar ahora
+          <Button href={t.site.applyUrl} external variant="primary" size="lg">
+            {t.ui.applyNow}
             <Icon name="arrow-right" class="w-4 h-4" strokeWidth={2.5} />
           </Button>
-          <Button href={site.programPdf} variant="ghost" size="lg" external>
-            Ver programa (PDF)
+          <Button href={t.site.programPdf} variant="ghost" size="lg" external>
+            {t.ui.programPdf}
           </Button>
         </div>
       </div>
@@ -64,7 +66,7 @@ import { site, cohort } from "@/data/content";
           <div class="relative rounded-3xl overflow-hidden border border-border-strong aspect-[3/2] lg:aspect-[5/4] bg-ink-2">
             <img
               src="/assets/llama-bootcamp.jpg"
-              alt="Bootcamp Ethereum Lima — llama mascota"
+              alt={t.hero.llamaAlt}
               class="w-full h-full object-cover"
               loading="eager"
             />
@@ -72,8 +74,8 @@ import { site, cohort } from "@/data/content";
 
           <!-- Badge flotante -->
           <div class="absolute -bottom-5 -left-5 lg:-left-8 bg-bootcamp-lime text-ink rounded-2xl px-4 py-3 shadow-2xl rotate-[-3deg] hidden md:block">
-            <p class="text-[10px] font-mono uppercase tracking-widest opacity-70">Próximo proyecto</p>
-            <p class="font-display text-base font-bold">dApp en Stylus</p>
+            <p class="text-[10px] font-mono uppercase tracking-widest opacity-70">{t.hero.badgeLabel}</p>
+            <p class="font-display text-base font-bold">{t.hero.badgeProject}</p>
           </div>
         </div>
       </div>

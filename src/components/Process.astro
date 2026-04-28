@@ -2,21 +2,25 @@
 import Section from "./ui/Section.astro";
 import Icon from "./ui/Icon.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
-import { process } from "@/data/content";
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
 import { stepColors } from "@/data/tokens";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+const s = t.sections.process;
 ---
 
 <Section>
   <div class="text-center mb-16">
-    <Eyebrow>Proceso</Eyebrow>
+    <Eyebrow>{s.eyebrow}</Eyebrow>
     <h2 class="font-display text-3xl md:text-5xl mt-4 leading-[1.1]">
-      Cómo te <span class="gradient-llama">incorporas</span>.
+      {s.headingPre}<span class="gradient-llama">{s.headingHighlight}</span>{s.headingPost}
     </h2>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative reveal-stagger">
     {
-      process.map((p, i) => {
+      t.process.map((p, i) => {
         const color = stepColors[i];
         return (
           <div class="card p-7 relative group">
@@ -29,7 +33,7 @@ import { stepColors } from "@/data/tokens";
             <h3 class="font-display text-lg font-bold mb-2">{p.title}</h3>
             <p class="text-sm text-fg-muted leading-relaxed">{p.description}</p>
 
-            {i < process.length - 1 && (
+            {i < t.process.length - 1 && (
               <Icon
                 name="chevron-right"
                 class="hidden lg:block absolute top-12 -right-3 w-6 h-6 text-border-strong"

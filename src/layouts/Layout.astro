@@ -1,20 +1,26 @@
 ---
 import "@/styles/global.css";
-import { site } from "@/data/content";
+import { getContent, isLocale, LOCALES, DEFAULT_LOCALE } from "@/i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = site.name, description = site.description } = Astro.props;
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? site.url).toString();
-const ogImage = new URL("/assets/llama-bootcamp.jpg", Astro.site ?? site.url).toString();
+const { title = t.site.name, description = t.site.description } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? t.site.url).toString();
+const ogImage = new URL("/assets/llama-bootcamp.jpg", Astro.site ?? t.site.url).toString();
+
+const hreflangMap: Record<string, string> = { es: "es-PE", en: "en-US" };
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,13 +29,28 @@ const ogImage = new URL("/assets/llama-bootcamp.jpg", Astro.site ?? site.url).to
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="canonical" href={canonicalURL} />
 
+    {
+      LOCALES.map((loc) => (
+        <link
+          rel="alternate"
+          hreflang={hreflangMap[loc]}
+          href={new URL(getRelativeLocaleUrl(loc, ""), Astro.site ?? t.site.url).toString()}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(getRelativeLocaleUrl(DEFAULT_LOCALE, ""), Astro.site ?? t.site.url).toString()}
+    />
+
     <title>{title}</title>
     <meta name="description" content={description} />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Ethereum Lima" />
-    <meta property="og:locale" content="es_PE" />
+    <meta property="og:locale" content={t.ogLocale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
