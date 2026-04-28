@@ -31,6 +31,9 @@
   --color-border: rgba(11, 7, 23, 0.08);
   --color-border-strong: rgba(11, 7, 23, 0.18);
 
+  /* Accent — coral en light (contraste sobre cream), lime en dark (vibrante sobre navy) */
+  --color-accent: #e64a30;
+
   /* Glow / decorative strengths (light = subtler) */
   --glow-coral: rgba(230, 74, 48, 0.06);
   --glow-orange: rgba(241, 138, 46, 0.05);
@@ -60,6 +63,8 @@
     --color-border: rgba(255, 255, 255, 0.08);
     --color-border-strong: rgba(255, 255, 255, 0.18);
 
+    --color-accent: #c7f73a;
+
     --glow-coral: rgba(230, 74, 48, 0.18);
     --glow-orange: rgba(241, 138, 46, 0.14);
     --glow-cyan: rgba(61, 190, 213, 0.18);
@@ -80,6 +85,8 @@
   --color-fg-muted: #b0a8c4;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-strong: rgba(255, 255, 255, 0.18);
+
+  --color-accent: #c7f73a;
 
   --glow-coral: rgba(230, 74, 48, 0.18);
   --glow-orange: rgba(241, 138, 46, 0.14);
