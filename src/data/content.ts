@@ -16,9 +16,9 @@ export const site = {
 
 export const cohort = {
   label: "Cohorte 2026",
-  startLabel: "23 mayo",
-  endLabel: "27 junio",
-  startDate: "23 de mayo",
+  startLabel: "30 mayo",
+  endLabel: "4 julio",
+  startDate: "30 de mayo",
   weeks: 6,
   format: "Online",
 } as const;
@@ -144,7 +144,7 @@ export const process = [
   { step: 1, title: "Aplicar", description: "Completa el formulario de aplicación." },
   { step: 2, title: "Evaluación", description: "Revisamos tu perfil y confirmamos tu lugar." },
   { step: 3, title: "Acceso al programa", description: "Entras al campus virtual y al Discord." },
-  { step: 4, title: "Inicio de clases", description: "23 de mayo. A construir." },
+  { step: 4, title: "Inicio de clases", description: "30 de mayo. A construir." },
 ] as const;
 
 export const faqs = [
