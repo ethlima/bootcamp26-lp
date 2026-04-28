@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bootcamp.ethlima.org/sitemap-index.xml
