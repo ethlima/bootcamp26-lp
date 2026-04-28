@@ -2,14 +2,15 @@
 import Button from "./ui/Button.astro";
 import Icon from "./ui/Icon.astro";
 import { site, cohort } from "@/data/content";
+import { brandColors } from "@/data/tokens";
 ---
 
 <section class="relative py-24 md:py-32 px-6 border-t border-border overflow-hidden glow-hero dotted-bg">
   <div class="max-w-4xl mx-auto text-center relative reveal">
 
-    <!-- Llama decorativa de fondo -->
+    <!-- Spotlight decorativo de fondo -->
     <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-72 h-72 opacity-10 blur-2xl pointer-events-none"
-      style="background: radial-gradient(circle, #c7f73a, transparent 60%);">
+      style={`background: radial-gradient(circle, ${brandColors.bootcampLime}, transparent 60%);`}>
     </div>
 
     <h2 class="font-display text-4xl md:text-6xl lg:text-7xl mb-6 leading-[1.05]">

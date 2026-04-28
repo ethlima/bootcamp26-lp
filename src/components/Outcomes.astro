@@ -3,8 +3,7 @@ import Section from "./ui/Section.astro";
 import Icon from "./ui/Icon.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
 import { outcomes } from "@/data/content";
-
-const accents = ["#e64a30", "#f18a2e", "#3dbed5", "#2ca89f", "#c7f73a"];
+import { accentPalette } from "@/data/tokens";
 ---
 
 <Section>
@@ -16,7 +15,7 @@ const accents = ["#e64a30", "#f18a2e", "#3dbed5", "#2ca89f", "#c7f73a"];
   <div class="grid sm:grid-cols-2 gap-4 reveal-stagger">
     {
       outcomes.map((outcome, i) => {
-        const color = accents[i % accents.length];
+        const color = accentPalette[i % accentPalette.length];
         return (
           <div
             class={`card p-6 flex items-start gap-4 ${i === outcomes.length - 1 ? "sm:col-span-2" : ""}`}
