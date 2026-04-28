@@ -3,7 +3,7 @@ import Button from "./ui/Button.astro";
 import { site, cohort } from "@/data/content";
 ---
 
-<section class="relative py-24 md:py-32 px-6 border-t border-[var(--color-border)] overflow-hidden glow-hero dotted-bg">
+<section class="relative py-24 md:py-32 px-6 border-t border-border overflow-hidden glow-hero dotted-bg">
   <div class="max-w-4xl mx-auto text-center relative reveal">
 
     <!-- Llama decorativa de fondo -->
@@ -14,10 +14,10 @@ import { site, cohort } from "@/data/content";
     <h2 class="font-display text-4xl md:text-6xl lg:text-7xl mb-6 leading-[1.05]">
       ¿Listo para <span class="gradient-llama">construir</span>?
     </h2>
-    <p class="text-lg md:text-xl text-[var(--color-fg-muted)] mb-3">
+    <p class="text-lg md:text-xl text-fg-muted mb-3">
       Únete al bootcamp y comienza a crear en Web3.
     </p>
-    <p class="text-sm text-[var(--color-fg-muted)] mb-10">
+    <p class="text-sm text-fg-muted mb-10">
       <strong class="text-white">Próxima cohorte:</strong> {cohort.startDate}
     </p>
 

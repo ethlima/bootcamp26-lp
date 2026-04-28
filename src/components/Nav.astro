@@ -3,7 +3,7 @@ import Button from "./ui/Button.astro";
 import { navLinks, site } from "@/data/content";
 ---
 
-<nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-[#0b0717cc] border-b border-[var(--color-border)]">
+<nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-[#0b0717cc] border-b border-border">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-2.5 group">
       <img
@@ -13,7 +13,7 @@ import { navLinks, site } from "@/data/content";
       />
     </a>
 
-    <div class="hidden md:flex items-center gap-7 text-sm text-[var(--color-fg-muted)]">
+    <div class="hidden md:flex items-center gap-7 text-sm text-fg-muted">
       {
         navLinks.map((link) => (
           <a href={link.href} class="nav-link hover:text-white transition">
