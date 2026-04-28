@@ -14,11 +14,10 @@ const currentYear = new Date().getFullYear();
       <!-- Brand -->
       <div>
         <a href="#top" class="flex items-center gap-2 mb-4">
-          <img src="/assets/logo.webp" alt="Ethereum Lima" class="h-8 w-auto" />
+          <img src="/assets/logo.webp" alt="Ethereum Lima" class="h-10 w-auto" />
         </a>
         <p class="text-sm text-fg-muted leading-relaxed">
-          {t.footer.tagline}<br />
-          {t.footer.taglineSubtitle}
+          {t.footer.tagline}
         </p>
       </div>
 
@@ -56,7 +55,13 @@ const currentYear = new Date().getFullYear();
         © {currentYear} {t.footer.copyrightSuffix}
       </p>
       <p class="text-xs text-fg-muted font-mono">
-        {t.footer.madeIn} <span class="gradient-llama">Ξ</span> {t.footer.madeInSuffix}
+        {t.footer.madeIn} <span class="gradient-llama">♥</span> {t.footer.madeInSuffix}
+        <a
+          href="https://github.com/bogos"
+          target="_blank"
+          rel="noopener"
+          class="hover:text-fg transition underline-offset-2 hover:underline"
+        >Bogo</a>
       </p>
     </div>
   </div>

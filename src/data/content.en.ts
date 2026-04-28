@@ -290,11 +290,10 @@ export const faqs = [
 ] as const;
 
 export const footer = {
-  tagline: "Blockchain community and education in Lima.",
-  taglineSubtitle: "Building the Web3 ecosystem in Peru.",
+  tagline: "Ethereum community of Lima since 2020.",
   ecosystemLabel: "Ecosystem",
   contactLabel: "Contact",
   copyrightSuffix: "Ethereum Lima. Building the Web3 ecosystem in Peru.",
   madeIn: "Made with",
-  madeInSuffix: "in Lima",
+  madeInSuffix: "in Lima by",
 } as const;
