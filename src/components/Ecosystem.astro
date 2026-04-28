@@ -1,0 +1,74 @@
+---
+import Section from "./ui/Section.astro";
+import { sponsor, allies, ecosystem } from "@/data/content";
+---
+
+<Section variant="muted">
+  <div class="text-center max-w-3xl mx-auto">
+    <span class="text-xs uppercase tracking-[0.25em] font-mono font-semibold text-[var(--color-bootcamp-lime)]">
+      Ecosistema
+    </span>
+    <h2 class="font-display text-3xl md:text-5xl mt-4 mb-5 leading-[1.1]">
+      Construido con <span class="gradient-llama">el ecosistema</span>.
+    </h2>
+    <p class="text-[var(--color-fg-muted)] mb-14">
+      Colaboración con comunidades y proyectos del ecosistema Web3 para potenciar
+      aprendizaje y conexión.
+    </p>
+  </div>
+
+  <!-- Sponsor principal -->
+  <div class="text-center mb-14">
+    <p class="text-[10px] uppercase tracking-[0.3em] font-mono text-[var(--color-fg-muted)] mb-6">
+      Sponsor principal
+    </p>
+    <a
+      href={sponsor.url}
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center justify-center px-12 py-7 rounded-2xl border border-[var(--color-border)] bg-[var(--color-ink)] hover:border-[var(--color-bootcamp-blue)]/50 transition-colors group"
+    >
+      <!-- TODO: reemplazar por <img src="/assets/arbitrum.svg" class="h-10"> -->
+      <span class="font-display text-3xl font-bold tracking-tight group-hover:text-[var(--color-bootcamp-blue)] transition-colors">
+        Arbitrum
+      </span>
+    </a>
+  </div>
+
+  <!-- Aliados -->
+  <div class="text-center mb-14">
+    <p class="text-[10px] uppercase tracking-[0.3em] font-mono text-[var(--color-fg-muted)] mb-6">
+      Aliados
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      {
+        allies.map((ally) => (
+          <a
+            href={ally.url}
+            class="px-8 py-5 rounded-xl border border-[var(--color-border)] bg-[var(--color-ink)] hover:border-[var(--color-border-strong)] transition-colors"
+          >
+            <span class="font-display text-xl font-semibold">{ally.name}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Vínculo con el ecosistema ETH Lima -->
+  <div class="max-w-3xl mx-auto pt-10 border-t border-[var(--color-border)]">
+    <p class="text-center text-sm text-[var(--color-fg-muted)] mb-5">
+      Parte del ecosistema <strong class="text-white">Ethereum Lima</strong>
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a href={ecosystem.parent.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-[var(--color-border)] hover:border-[var(--color-coral)] hover:text-[var(--color-coral)] transition-colors">
+        ethlima.org
+      </a>
+      <a href={ecosystem.education.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-[var(--color-border)] hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)] transition-colors">
+        Campus virtual
+      </a>
+      <a href={ecosystem.event.url} target="_blank" rel="noopener" class="text-sm px-4 py-2 rounded-full border border-[var(--color-border)] hover:border-[var(--color-bootcamp-lime)] hover:text-[var(--color-bootcamp-lime)] transition-colors">
+        ETH Lima Day
+      </a>
+    </div>
+  </div>
+</Section>

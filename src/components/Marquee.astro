@@ -1,0 +1,42 @@
+---
+const items = [
+  { label: "Solidity", color: "#e64a30" },
+  { label: "Rust", color: "#f18a2e" },
+  { label: "Arbitrum Stylus", color: "#3dbed5" },
+  { label: "Smart Contracts", color: "#2ca89f" },
+  { label: "Layer 2", color: "#c7f73a" },
+  { label: "dApps", color: "#7752e0" },
+  { label: "Foundry", color: "#e64a30" },
+  { label: "Hardhat", color: "#3dbed5" },
+  { label: "Ethers.js", color: "#f18a2e" },
+  { label: "Web3", color: "#2ca89f" },
+  { label: "DeFi", color: "#c7f73a" },
+  { label: "EVM", color: "#7752e0" },
+];
+
+const sep = "✦";
+---
+
+<div class="marquee py-12 border-y border-[var(--color-border)] bg-[#0e0a1f]">
+  <div class="marquee-track">
+    {
+      [...items, ...items].map((item) => (
+        <span class="flex items-center gap-6 px-6">
+          <span
+            class="font-display text-2xl md:text-3xl font-semibold whitespace-nowrap"
+            style={`color: ${item.color}`}
+          >
+            {item.label}
+          </span>
+          <span
+            class="text-sm opacity-30"
+            style={`color: ${item.color}`}
+            aria-hidden="true"
+          >
+            {sep}
+          </span>
+        </span>
+      ))
+    }
+  </div>
+</div>

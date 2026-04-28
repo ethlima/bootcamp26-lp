@@ -1,0 +1,29 @@
+---
+import Section from "./ui/Section.astro";
+import { faqs } from "@/data/content";
+---
+
+<Section id="faq" variant="muted">
+  <div class="max-w-3xl mx-auto">
+    <span class="text-xs uppercase tracking-[0.25em] font-mono font-semibold text-[var(--color-bootcamp-lime)]">
+      FAQ
+    </span>
+    <h2 class="font-display text-3xl md:text-5xl mt-4 mb-12 leading-[1.1]">
+      Preguntas <span class="gradient-llama">frecuentes</span>.
+    </h2>
+
+    <div class="space-y-3 reveal-stagger">
+      {
+        faqs.map((faq) => (
+          <details class="card p-6 group">
+            <summary class="flex items-center justify-between gap-4 font-semibold text-base md:text-lg">
+              <span>{faq.question}</span>
+              <span class="faq-icon text-[var(--color-bootcamp-lime)] text-2xl font-light flex-shrink-0">+</span>
+            </summary>
+            <p class="text-[var(--color-fg-muted)] mt-4 leading-relaxed">{faq.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</Section>

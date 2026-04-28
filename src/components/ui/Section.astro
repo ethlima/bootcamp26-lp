@@ -1,0 +1,24 @@
+---
+interface Props {
+  id?: string;
+  variant?: "default" | "muted" | "hero";
+  class?: string;
+}
+
+const { id, variant = "default", class: className = "" } = Astro.props;
+
+const variantClass = {
+  default: "",
+  muted: "bg-[#0e0a1f]",
+  hero: "glow-hero",
+}[variant];
+---
+
+<section
+  id={id}
+  class={`relative border-t border-[var(--color-border)] py-20 md:py-28 px-6 ${variantClass} ${className}`}
+>
+  <div class="max-w-6xl mx-auto relative reveal">
+    <slot />
+  </div>
+</section>

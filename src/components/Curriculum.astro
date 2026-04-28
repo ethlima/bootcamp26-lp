@@ -1,0 +1,62 @@
+---
+import Section from "./ui/Section.astro";
+import Button from "./ui/Button.astro";
+import { modules, site } from "@/data/content";
+---
+
+<Section id="curriculum" variant="muted">
+  <span class="text-xs uppercase tracking-[0.25em] font-mono font-semibold text-[var(--color-bootcamp-lime)]">
+    Currículum
+  </span>
+  <h2 class="font-display text-3xl md:text-5xl mt-4 mb-3 leading-[1.1]">
+    4 módulos.<br />
+    1 <span class="gradient-llama">dApp deployada</span>.
+  </h2>
+  <p class="text-lg text-[var(--color-fg-muted)] max-w-2xl mb-12">
+    Cada módulo construye sobre el anterior. Sales con código real en producción.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-5 reveal-stagger">
+    {
+      modules.map((mod) => (
+        <div
+          class="card p-8 group relative overflow-hidden"
+          style={`--accent-from: ${mod.accent.from}; --accent-to: ${mod.accent.to};`}
+        >
+          <div
+            class="absolute -top-20 -right-20 w-48 h-48 rounded-full opacity-15 blur-3xl group-hover:opacity-30 transition-opacity duration-500"
+            style={`background: radial-gradient(circle, ${mod.accent.from}, transparent 70%);`}
+          />
+
+          <div class="relative">
+            <div class="flex items-center justify-between mb-6">
+              <span
+                class="font-mono text-sm font-semibold tracking-wider"
+                style={`color: ${mod.accent.from};`}
+              >
+                MÓDULO {mod.number}
+              </span>
+              <span
+                class="text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full border font-mono font-semibold"
+                style={`color: ${mod.accent.to}; border-color: ${mod.accent.to}55; background: ${mod.accent.to}11;`}
+              >
+                {mod.level}
+              </span>
+            </div>
+            <h3 class="font-display text-2xl md:text-3xl font-bold mb-3">{mod.title}</h3>
+            <p class="text-[var(--color-fg-muted)] leading-relaxed">{mod.description}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="text-center mt-12">
+    <Button href={site.programPdf} variant="ghost" size="lg" external>
+      Ver programa completo (PDF)
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </Button>
+  </div>
+</Section>
