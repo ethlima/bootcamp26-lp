@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  /* === Brand colors (fixed regardless of theme) === */
+
   /* Ethereum Lima — paleta sunset (diamante multicolor) */
   --color-coral: #e64a30;
   --color-orange: #f18a2e;
@@ -13,39 +15,94 @@
   --color-bootcamp-lime: #c7f73a;
   --color-bootcamp-purple: #7752e0;
 
-  /* Superficies */
+  /* Anchor colors (always same hex) */
   --color-ink: #0b0717;
-  --color-ink-2: #14102a;
-  --color-ink-3: #1d1840;
   --color-cream: #fff8ee;
 
-  /* Texto */
-  --color-fg: #f4f0e8;
-  --color-fg-muted: #b0a8c4;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(255, 255, 255, 0.18);
+  /* === Semantic tokens — light defaults, overridden by [data-theme="dark"] === */
+
+  --color-bg: #fff8ee;
+  --color-surface: #ffffff;
+  --color-surface-2: #f5efe2;
+  --color-bg-translucent: rgba(255, 248, 238, 0.85);
+
+  --color-fg: #0b0717;
+  --color-fg-muted: #6b6478;
+  --color-border: rgba(11, 7, 23, 0.08);
+  --color-border-strong: rgba(11, 7, 23, 0.18);
+
+  /* Glow / decorative strengths (light = subtler) */
+  --glow-coral: rgba(230, 74, 48, 0.06);
+  --glow-orange: rgba(241, 138, 46, 0.05);
+  --glow-cyan: rgba(61, 190, 213, 0.06);
+  --glow-lime: rgba(199, 247, 58, 0.04);
+  --dot-color: rgba(11, 7, 23, 0.06);
+  --grid-color: rgba(11, 7, 23, 0.04);
+  --card-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 100%);
 
   /* Tipografía */
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
 
-  /* Espaciado de sección */
-  --section-y: 6rem;
+/* === Dark theme overrides === */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0b0717;
+    --color-surface: #14102a;
+    --color-surface-2: #0e0a1f;
+    --color-bg-translucent: rgba(11, 7, 23, 0.8);
+
+    --color-fg: #f4f0e8;
+    --color-fg-muted: #b0a8c4;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-strong: rgba(255, 255, 255, 0.18);
+
+    --glow-coral: rgba(230, 74, 48, 0.18);
+    --glow-orange: rgba(241, 138, 46, 0.14);
+    --glow-cyan: rgba(61, 190, 213, 0.18);
+    --glow-lime: rgba(199, 247, 58, 0.1);
+    --dot-color: rgba(255, 255, 255, 0.06);
+    --grid-color: rgba(255, 255, 255, 0.04);
+    --card-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+}
+
+[data-theme="dark"] {
+  --color-bg: #0b0717;
+  --color-surface: #14102a;
+  --color-surface-2: #0e0a1f;
+  --color-bg-translucent: rgba(11, 7, 23, 0.8);
+
+  --color-fg: #f4f0e8;
+  --color-fg-muted: #b0a8c4;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+
+  --glow-coral: rgba(230, 74, 48, 0.18);
+  --glow-orange: rgba(241, 138, 46, 0.14);
+  --glow-cyan: rgba(61, 190, 213, 0.18);
+  --glow-lime: rgba(199, 247, 58, 0.1);
+  --dot-color: rgba(255, 255, 255, 0.06);
+  --grid-color: rgba(255, 255, 255, 0.04);
+  --card-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--color-ink);
+  background: var(--color-bg);
 }
 
 body {
   font-family: var(--font-sans);
-  background: var(--color-ink);
+  background: var(--color-bg);
   color: var(--color-fg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
@@ -82,10 +139,10 @@ body {
 
 .glow-hero {
   background:
-    radial-gradient(ellipse 70% 50% at 20% 10%, rgba(230, 74, 48, 0.18), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(241, 138, 46, 0.14), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(61, 190, 213, 0.18), transparent 60%),
-    radial-gradient(ellipse 40% 40% at 70% 70%, rgba(199, 247, 58, 0.10), transparent 70%);
+    radial-gradient(ellipse 70% 50% at 20% 10%, var(--glow-coral), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, var(--glow-orange), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 80%, var(--glow-cyan), transparent 60%),
+    radial-gradient(ellipse 40% 40% at 70% 70%, var(--glow-lime), transparent 70%);
   background-size: 200% 200%;
   animation: drift-glow 60s ease-in-out infinite;
 }
@@ -101,24 +158,23 @@ body {
 }
 
 .dotted-bg {
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, var(--dot-color) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
 /* === Cards === */
 .card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%),
-    var(--color-ink-2);
+  background: var(--card-overlay), var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 20px;
-  transition: border-color 0.25s ease, transform 0.25s ease;
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.3s ease;
 }
 .card:hover {
   border-color: var(--color-border-strong);
