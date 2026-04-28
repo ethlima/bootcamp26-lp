@@ -1,6 +1,5 @@
 ---
 import Section from "./ui/Section.astro";
-import Icon from "./ui/Icon.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
 import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
 import { stepColors } from "@/data/tokens";
@@ -18,12 +17,12 @@ const s = t.sections.process;
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative reveal-stagger">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal-stagger">
     {
       t.process.map((p, i) => {
         const color = stepColors[i];
         return (
-          <div class="card p-7 relative group">
+          <div class="card p-7 group">
             <div
               class="w-14 h-14 rounded-2xl font-display font-bold text-2xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110 group-hover:rotate-[-3deg]"
               style={`background-color: ${color.bg}; color: ${color.text};`}
@@ -32,16 +31,6 @@ const s = t.sections.process;
             </div>
             <h3 class="font-display text-lg font-bold mb-2">{p.title}</h3>
             <p class="text-sm text-fg-muted leading-relaxed">{p.description}</p>
-
-            {i < t.process.length - 1 && (
-              <div
-                class="hidden lg:flex absolute -right-4 top-14 -translate-y-1/2 w-7 h-7 items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity"
-                style={`color: ${stepColors[i + 1].bg};`}
-                aria-hidden="true"
-              >
-                <Icon name="arrow-right" class="w-5 h-5" strokeWidth={2.25} />
-              </div>
-            )}
           </div>
         );
       })
