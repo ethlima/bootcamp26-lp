@@ -28,10 +28,18 @@ const s = t.sections.ecosystem;
       href={t.sponsor.url}
       target="_blank"
       rel="noopener"
-      class="inline-flex items-center justify-center px-12 py-7 rounded-2xl border border-border bg-bg hover:border-bootcamp-blue/50 transition-colors group"
+      aria-label={t.sponsor.name}
+      class="inline-flex items-center justify-center gap-5 px-14 py-8 rounded-2xl border border-border bg-white hover:border-bootcamp-blue/50 transition-colors group"
     >
-      <!-- TODO: reemplazar por <img src="/assets/arbitrum.svg" class="h-10"> -->
-      <span class="font-display text-3xl font-bold tracking-tight group-hover:text-bootcamp-blue transition-colors">
+      <img
+        src={t.sponsor.logo}
+        alt={t.sponsor.name}
+        width="64"
+        height="72"
+        class="h-16 w-auto"
+        loading="lazy"
+      />
+      <span class="font-display text-3xl md:text-4xl font-bold tracking-tight text-[#213147] group-hover:text-bootcamp-blue transition-colors">
         {t.sponsor.name}
       </span>
     </a>
@@ -47,9 +55,32 @@ const s = t.sections.ecosystem;
         t.allies.map((ally) => (
           <a
             href={ally.url}
-            class="px-8 py-5 rounded-xl border border-border bg-bg hover:border-border-strong transition-colors"
+            target="_blank"
+            rel="noopener"
+            aria-label={ally.name}
+            class="flex items-center justify-center gap-3 h-24 min-w-60 px-7 rounded-xl border border-border bg-white hover:border-border-strong transition-colors"
           >
-            <span class="font-display text-xl font-semibold">{ally.name}</span>
+            <img
+              src={ally.logo}
+              alt={ally.logoAlt}
+              class="max-h-12 w-auto object-contain shrink-0"
+              loading="lazy"
+            />
+            {ally.showName && (
+              <span
+                class="text-2xl whitespace-nowrap leading-none"
+                style={[
+                  ally.nameColor ? `color: ${ally.nameColor}` : "",
+                  ally.nameFont ? `font-family: ${ally.nameFont}` : "",
+                  ally.nameWeight ? `font-weight: ${ally.nameWeight}` : "",
+                  ally.nameLetterSpacing ? `letter-spacing: ${ally.nameLetterSpacing}` : "",
+                ]
+                  .filter(Boolean)
+                  .join("; ")}
+              >
+                {ally.name}
+              </span>
+            )}
           </a>
         ))
       }

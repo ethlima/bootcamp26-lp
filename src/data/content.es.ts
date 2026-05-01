@@ -230,11 +230,35 @@ export const outcomes = [
   "Base sólida para seguir construyendo en Web3",
 ] as const;
 
-export const sponsor = { name: "Arbitrum", url: "https://arbitrum.io" } as const;
+export const sponsor = {
+  name: "Arbitrum",
+  url: "https://arbitrum.io",
+  logo: "/assets/sponsors/arbitrum.svg",
+} as const;
 
 export const allies = [
-  { name: "Quantum", url: "#" },
-  { name: "Rust Perú", url: "#" },
+  {
+    name: "Quantum3 Labs",
+    url: "https://www.quantum3labs.com/",
+    logo: "/assets/sponsors/quantum3.svg",
+    logoAlt: "Quantum3 Labs",
+    showName: false,
+    nameColor: null,
+    nameFont: null,
+    nameWeight: null,
+    nameLetterSpacing: null,
+  },
+  {
+    name: "Rust Perú",
+    url: "https://www.rust.pe/",
+    logo: "/assets/sponsors/rust-peru.png",
+    logoAlt: "Rust Perú",
+    showName: true,
+    nameColor: "#0b0717",
+    nameFont: "'Alfa Slab One', cursive",
+    nameWeight: "400",
+    nameLetterSpacing: null,
+  },
 ] as const;
 
 export const process = [
