@@ -25,11 +25,19 @@ const courseSchema = {
   url: `${t.site.url}/en/`,
   image: `${t.site.url}/assets/llama-bootcamp.jpg`,
   inLanguage: "en",
+  educationalLevel: "Beginner",
+  teaches: ["Solidity", "Rust", "Arbitrum Stylus", "Smart Contracts", "Web3", "dApps", "Blockchain", "Ethereum"],
+  coursePrerequisites: "Basic programming knowledge",
   provider: {
     "@type": "Organization",
     name: t.ecosystem.parent.name,
     url: t.ecosystem.parent.url,
-    sameAs: t.ecosystem.parent.url,
+    sameAs: [
+      t.ecosystem.parent.url,
+      "https://x.com/ethereumlima",
+      "https://t.me/ethlima",
+      "https://www.linkedin.com/company/ethereum-lima",
+    ],
   },
   about: [
     "Ethereum",
@@ -55,15 +63,33 @@ const courseSchema = {
   offers: {
     "@type": "Offer",
     url: t.site.applyUrl,
+    price: "0",
+    priceCurrency: "USD",
     availability: "https://schema.org/InStock",
-    category: "Educational",
+    category: "Free",
   },
+};
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Ethereum Lima",
+  url: "https://ethlima.org",
+  logo: `${t.site.url}/assets/logo.webp`,
+  sameAs: [
+    "https://ethlima.org",
+    "https://x.com/ethereumlima",
+    "https://t.me/ethlima",
+    "https://www.linkedin.com/company/ethereum-lima",
+    "https://www.instagram.com/ethereumlima",
+  ],
 };
 ---
 
 <Layout>
   <Fragment slot="head">
     <script type="application/ld+json" is:inline set:html={JSON.stringify(courseSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(orgSchema)} />
   </Fragment>
   <Nav />
   <main>
