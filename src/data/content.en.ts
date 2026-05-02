@@ -56,18 +56,17 @@ export const ui = {
   apply: "Apply",
   applyNow: "Apply now",
   programPdf: "View program (PDF)",
-  programPdfFull: "View full program (PDF)",
   iHaveAQuestion: "I have a question",
   switchTo: "ES",
 } as const;
 
 export const hero = {
-  headingLine1: "From zero to your",
+  headingLine1: "Ship your",
   headingLine2Pre: "first ",
   headingLine2Highlight: "dApp",
   headingLine3: "on Arbitrum.",
   description:
-    "Intensive 6-week bootcamp to build on blockchain with Ethereum, Solidity, Rust and Arbitrum Stylus.",
+    "Intensive 6-week bootcamp for devs ready to ship their first dApp on Arbitrum with Stylus, Rust and Solidity.",
   llamaAlt: "Bootcamp Ethereum Lima — llama mascot",
   badgeLabel: "Next project",
   badgeProject: "dApp on Stylus",
@@ -76,13 +75,13 @@ export const hero = {
 export const sections = {
   intro: {
     eyebrow: "Overview",
-    headingPre: "Go from the ",
-    headingHighlight: "fundamentals",
-    headingPost: " to a complete dApp on Arbitrum Stylus.",
+    headingPre: "Build and ",
+    headingHighlight: "deploy",
+    headingPost: " your first dApp on Arbitrum Stylus.",
     body1:
-      "A practical Web3 bootcamp where you go from fundamentals to real implementation, building a complete dApp on Arbitrum Stylus.",
+      "Practical bootcamp for devs ready to ship on Web3. You build and deploy a complete dApp on Arbitrum Stylus.",
     body2:
-      "You'll work with current Ethereum ecosystem technologies, focused on execution, not just theory.",
+      "You work with the current Ethereum stack — Solidity, Rust, real tooling — focused on execution, not just theory.",
     statWeeks: "weeks",
     statModules: "modules",
     statDapp: "deployed dApp",
@@ -178,22 +177,23 @@ export const features = [
 
 export const audience = {
   technical: {
-    title: "Technical profiles",
+    title: "Best fit",
     items: [
-      "Developers (JavaScript, Python, others)",
-      "Web2 devs migrating to Web3",
-      "Software / IT students",
+      "Web2 devs (JS, Python) jumping to Web3",
+      "Devs with Solidity or Rust basics",
+      "Students with coding experience",
     ],
   },
   nonTechnical: {
-    title: "Non-technical profiles",
+    title: "Also welcome",
     items: [
-      "Product managers and designers",
-      "Founders and entrepreneurs",
-      "Crypto community members",
+      "Product managers and designers with technical baseline",
+      "Web3 founders and entrepreneurs",
+      "Crypto community members ready to build",
     ],
   },
-  requirements: "Digital and/or programming basics.",
+  requirements:
+    "Programming experience in any language. Recommended: Web2 (JS/Python) or Solidity baseline — the Rust module has a learning curve.",
 } as const;
 
 export const modules = [
@@ -235,11 +235,35 @@ export const outcomes = [
   "Solid foundation to keep building on Web3",
 ] as const;
 
-export const sponsor = { name: "Arbitrum", url: "https://arbitrum.io" } as const;
+export const sponsor = {
+  name: "Arbitrum",
+  url: "https://arbitrum.io",
+  logo: "/assets/sponsors/arbitrum.svg",
+} as const;
 
 export const allies = [
-  { name: "Quantum", url: "#" },
-  { name: "Rust Perú", url: "#" },
+  {
+    name: "Quantum3 Labs",
+    url: "https://www.quantum3labs.com/",
+    logo: "/assets/sponsors/quantum3.svg",
+    logoAlt: "Quantum3 Labs",
+    showName: false,
+    nameColor: null,
+    nameFont: null,
+    nameWeight: null,
+    nameLetterSpacing: null,
+  },
+  {
+    name: "Rust Peru",
+    url: "https://www.rust.pe/",
+    logo: "/assets/sponsors/rust-peru.png",
+    logoAlt: "Rust Peru",
+    showName: true,
+    nameColor: "#0b0717",
+    nameFont: "'Alfa Slab One', cursive",
+    nameWeight: "400",
+    nameLetterSpacing: null,
+  },
 ] as const;
 
 export const process = [
@@ -269,7 +293,7 @@ export const faqs = [
   {
     question: "Do I need prior experience?",
     answer:
-      "Programming language basics like JavaScript or Solidity are recommended.",
+      "Yes. We recommend programming experience in any language — ideally Web2 (JS/Python) or Solidity. The bootcamp is open to all, but keep in mind the Rust module has a learning curve if you don't have a coding baseline.",
   },
   {
     question: "Are classes live?",
