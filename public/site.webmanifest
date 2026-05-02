@@ -1,0 +1,21 @@
+{
+  "name": "Ethereum Lima Bootcamp 2026",
+  "short_name": "Bootcamp ETH Lima",
+  "description": "Programa intensivo de 6 semanas para aprender a construir en blockchain con Ethereum y Arbitrum Stylus.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0717",
+  "theme_color": "#0b0717",
+  "icons": [
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

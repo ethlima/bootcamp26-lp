@@ -17,6 +17,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? t.site.url).toStr
 const ogImage = new URL("/assets/llama-bootcamp.jpg", Astro.site ?? t.site.url).toString();
 
 const hreflangMap: Record<string, string> = { es: "es-PE", en: "en-US" };
+
+// SEO title con tagline para long-tail
+const titleTagline = lang === "en"
+  ? " | Learn Solidity & Web3 in Peru"
+  : " | Aprende Solidity y Web3 en Perú";
+const seoTitle = Astro.props.title ? title : `${title}${titleTagline}`;
 ---
 
 <!doctype html>
@@ -42,6 +48,8 @@ const hreflangMap: Record<string, string> = { es: "es-PE", en: "en-US" };
       })();
     </script>
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonicalURL} />
 
     {
@@ -59,20 +67,30 @@ const hreflangMap: Record<string, string> = { es: "es-PE", en: "en-US" };
       href={new URL(getRelativeLocaleUrl(DEFAULT_LOCALE, ""), Astro.site ?? t.site.url).toString()}
     />
 
-    <title>{title}</title>
+    <title>{seoTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Ethereum Lima" />
+    <meta name="geo.region" content="PE-LIM" />
+    <meta name="geo.placename" content="Lima, Peru" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Ethereum Lima" />
     <meta property="og:locale" content={t.ogLocale} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={seoTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content={seoTitle} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:site" content="@ethereumlima" />
+    <meta name="twitter:creator" content="@ethereumlima" />
+    <meta name="twitter:title" content={seoTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={seoTitle} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
