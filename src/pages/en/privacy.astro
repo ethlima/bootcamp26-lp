@@ -1,0 +1,183 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+
+const title = "Privacy Policy — Ethereum Lima Bootcamp 2026";
+const description =
+  "Learn how Ethereum Lima collects, uses, and protects the personal information of Bootcamp 2026 participants.";
+---
+
+<Layout title={title} description={description}>
+  <Nav />
+  <main class="max-w-3xl mx-auto px-6 pt-36 pb-24">
+
+    <p class="text-xs uppercase tracking-widest text-fg-muted font-mono font-semibold mb-4">
+      Legal
+    </p>
+    <h1 class="font-display text-4xl md:text-5xl leading-[1.1] mb-4">
+      Privacy Policy
+    </h1>
+    <p class="text-sm text-fg-muted mb-12">
+      Last updated: May 2026 · Applies to the <strong class="text-fg">Ethereum Lima Bootcamp 2026</strong>
+    </p>
+
+    <div class="prose-policy">
+
+      <h2>1. Data Controller</h2>
+      <p>
+        The data controller is <strong>Ethereum Lima</strong>, a non-profit community based in Lima,
+        Peru, reachable at <a href="mailto:hola@ethlima.org">hola@ethlima.org</a>.
+      </p>
+
+      <h2>2. Data We Collect</h2>
+      <p>
+        When you complete the Bootcamp 2026 application form (hosted on <strong>Tally.so</strong>),
+        we may collect the following personal data:
+      </p>
+      <ul>
+        <li>Full name</li>
+        <li>Email address</li>
+        <li>Country and city of residence</li>
+        <li>Programming experience level</li>
+        <li>Motivation for joining the bootcamp</li>
+        <li>Any additional information you voluntarily share</li>
+      </ul>
+      <p>
+        This website (<strong>bootcamp.ethlima.org</strong>) does not install first-party tracking
+        cookies or use third-party analytics systems that monitor your browsing behavior.
+      </p>
+
+      <h2>3. Purpose of Processing</h2>
+      <p>We use your data exclusively to:</p>
+      <ul>
+        <li>Evaluate your Bootcamp 2026 application.</li>
+        <li>Notify you of your application outcome.</li>
+        <li>Grant access to the virtual campus and Discord upon admission.</li>
+        <li>Send communications directly related to the bootcamp program.</li>
+      </ul>
+      <p>
+        We do not use your data for advertising, nor do we sell or share it with third parties for
+        commercial purposes.
+      </p>
+
+      <h2>4. Legal Basis</h2>
+      <p>
+        Processing is based on your <strong>explicit consent</strong> provided when submitting the
+        application form, in accordance with Peru's
+        <strong>Law N° 29733 — Personal Data Protection Law</strong>
+        and its Regulation (D.S. 003-2013-JUS), as well as applicable international standards.
+      </p>
+
+      <h2>5. Third-Party Transfers</h2>
+      <p>
+        The application form is operated by <strong>Tally.so</strong> (Tally Software SRL, Belgium).
+        By using that form, your data is processed on Tally's servers under their own
+        <a href="https://tally.so/help/privacy-policy" target="_blank" rel="noopener">
+          terms and privacy policy
+        </a>.
+        We recommend reading them before applying.
+      </p>
+      <p>
+        We do not share your information with any other third party unless required by law.
+      </p>
+
+      <h2>6. Data Retention</h2>
+      <p>
+        We retain your data for the active period of Bootcamp 2026 (until
+        <strong>December 31, 2026</strong>) and for up to <strong>2 additional years</strong>
+        for ecosystem follow-up. After that period, data is deleted or anonymized.
+      </p>
+
+      <h2>7. Your Rights (ARCO)</h2>
+      <p>
+        Under Peruvian Law N° 29733, you have the following rights over your personal data:
+      </p>
+      <ul>
+        <li><strong>Access:</strong> request information about the data we hold on you.</li>
+        <li><strong>Rectification:</strong> correct inaccurate or incomplete data.</li>
+        <li><strong>Cancellation:</strong> request deletion of your data.</li>
+        <li><strong>Opposition:</strong> object to the processing of your data.</li>
+      </ul>
+      <p>
+        To exercise any of these rights, email us at
+        <a href="mailto:hola@ethlima.org">hola@ethlima.org</a> with your name and request.
+        We will respond within <strong>15 business days</strong>.
+      </p>
+
+      <h2>8. Security</h2>
+      <p>
+        We implement reasonable technical measures to protect your personal information from
+        unauthorized access, loss, or alteration. However, no Internet transmission can be
+        guaranteed 100% secure.
+      </p>
+
+      <h2>9. Changes to This Policy</h2>
+      <p>
+        We reserve the right to update this policy. Any significant changes will be communicated to
+        admitted participants via email. The current version will always be available on this page.
+      </p>
+
+      <h2>10. Contact</h2>
+      <p>For any questions regarding this privacy policy:</p>
+      <ul>
+        <li>Email: <a href="mailto:hola@ethlima.org">hola@ethlima.org</a></li>
+        <li>Website: <a href="https://ethlima.org" target="_blank" rel="noopener">ethlima.org</a></li>
+      </ul>
+
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-border">
+      <a href="/en/" class="text-sm text-fg-muted hover:text-fg transition">
+        ← Back to home
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .prose-policy {
+    color: var(--color-fg-muted);
+    line-height: 1.8;
+  }
+
+  .prose-policy h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-fg);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose-policy p {
+    margin-bottom: 1rem;
+  }
+
+  .prose-policy ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-policy ul li {
+    margin-bottom: 0.35rem;
+  }
+
+  .prose-policy a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.15s;
+  }
+
+  .prose-policy a:hover {
+    opacity: 0.75;
+  }
+
+  .prose-policy strong {
+    color: var(--color-fg);
+    font-weight: 600;
+  }
+</style>

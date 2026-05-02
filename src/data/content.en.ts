@@ -320,4 +320,5 @@ export const footer = {
   copyrightSuffix: "Ethereum Lima. Building the Web3 ecosystem in Peru.",
   madeIn: "Made with",
   madeInSuffix: "in Lima by",
+  privacyLabel: "Privacy Policy",
 } as const;

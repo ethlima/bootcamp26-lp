@@ -51,9 +51,17 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div class="pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-      <p class="text-xs text-fg-muted">
-        © {currentYear} {t.footer.copyrightSuffix}
-      </p>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
+        <p class="text-xs text-fg-muted">
+          © {currentYear} {t.footer.copyrightSuffix}
+        </p>
+        <a
+          href={lang === "en" ? "/en/privacy/" : "/privacidad/"}
+          class="text-xs text-fg-muted hover:text-fg transition underline-offset-2 hover:underline"
+        >
+          {t.footer.privacyLabel}
+        </a>
+      </div>
       <p class="text-xs text-fg-muted font-mono">
         {t.footer.madeIn} <span class="gradient-llama">♥</span> {t.footer.madeInSuffix}
         <a
