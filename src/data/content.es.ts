@@ -12,7 +12,7 @@ export const site = {
   description:
     "Programa intensivo de 6 semanas para aprender a construir en blockchain desde cero hasta dApps completas con Ethereum y Arbitrum Stylus.",
   applyUrl: "https://tally.so/r/pb07AP",
-  programPdf: "/assets/ethlima-bootcamp-2026.pdf",
+  programPdf: "#",
   contactEmail: "hola@ethlima.org",
 } as const;
 

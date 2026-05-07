@@ -17,7 +17,7 @@ export const site = {
   description:
     "Intensive 6-week free program to learn how to build on blockchain from scratch to complete dApps with Ethereum and Arbitrum Stylus.",
   applyUrl: "https://tally.so/r/pb07AP",
-  programPdf: "/assets/ethlima-bootcamp-2026.pdf",
+  programPdf: "#",
   contactEmail: "hola@ethlima.org",
 } as const;
 
