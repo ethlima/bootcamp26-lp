@@ -15,7 +15,7 @@ export const site = {
   shortName: "Bootcamp ETH Lima",
   url: "https://bootcamp.ethlima.org",
   description:
-    "Intensive 6-week program to learn how to build on blockchain from scratch to complete dApps with Ethereum and Arbitrum Stylus.",
+    "Intensive 6-week free program to learn how to build on blockchain from scratch to complete dApps with Ethereum and Arbitrum Stylus.",
   applyUrl: "https://tally.so/r/pb07AP",
   programPdf: "/assets/ethlima-bootcamp-2026.pdf",
   contactEmail: "hola@ethlima.org",
