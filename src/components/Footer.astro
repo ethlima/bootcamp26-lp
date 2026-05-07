@@ -38,8 +38,11 @@ const currentYear = new Date().getFullYear();
         <p class="text-xs uppercase tracking-widest text-fg-muted font-mono font-semibold mb-4">
           {t.footer.contactLabel}
         </p>
-        <a href={`mailto:${t.site.contactEmail}`} class="text-sm text-fg-muted hover:text-fg transition block mb-5">
+        <a href={`mailto:${t.site.contactEmail}`} class="text-sm text-fg-muted hover:text-fg transition block mb-2">
           {t.site.contactEmail}
+        </a>
+        <a href={t.ecosystem.parent.url} target="_blank" rel="noopener" class="text-sm text-fg-muted hover:text-fg transition block mb-5">
+          {t.ecosystem.parent.url.replace("https://", "")}
         </a>
         <div class="flex flex-wrap gap-3">
           <a href={t.social.telegram} target="_blank" rel="noopener" class="text-sm px-3.5 py-1.5 rounded-full border border-border text-fg-muted hover:border-accent hover:text-accent transition">Telegram</a>
