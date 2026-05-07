@@ -35,6 +35,9 @@ const s = t.sections.finalCta;
       <Button href={`mailto:${t.site.contactEmail}`} variant="ghost" size="lg">
         {t.ui.iHaveAQuestion}
       </Button>
+      <Button href={t.ecosystem.parent.url} external variant="ghost" size="lg">
+        {t.ecosystem.parent.url.replace("https://", "")}
+      </Button>
     </div>
   </div>
 </section>
