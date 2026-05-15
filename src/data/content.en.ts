@@ -109,6 +109,12 @@ export const sections = {
     headingLine2Post: ".",
     body: "Each module builds on the previous one. You leave with real production code.",
     modulePrefix: "MODULE",
+    topicsLabel: "Topics",
+    topicPrefix: "TOPIC",
+    outcomeEyebrow: "Outcome",
+    outcomeTitle: "Your dApp deployed on Arbitrum.",
+    outcomeBody:
+      "You wrap up the bootcamp with a working onchain project — code on your GitHub, verified contract in explorer, UI connected. Something concrete to show.",
   },
   outcomes: {
     eyebrow: "Outcomes",
@@ -203,6 +209,25 @@ export const modules = [
     description: "Fundamentals, use cases and Web3 product design.",
     level: "Beginner",
     accent: { from: "#e64a30", to: "#f18a2e" },
+    topics: [
+      {
+        title: "Introduction to Blockchain & Arbitrum",
+        description:
+          "How chains and layers work, and why Arbitrum matters.",
+      },
+      {
+        title: "Project management in Web2 vs Web3",
+        description: "Differences in cycles, teams and product decisions.",
+      },
+      {
+        title: "Ethereum CROPS & Real World Assets",
+        description: "Tokenizing real-world assets on Ethereum.",
+      },
+      {
+        title: "Web3 use cases & product design",
+        description: "Mapping real problems to onchain solutions.",
+      },
+    ],
   },
   {
     number: "02",
@@ -210,6 +235,16 @@ export const modules = [
     description: "Smart contract development on Ethereum.",
     level: "Intermediate",
     accent: { from: "#f18a2e", to: "#3dbed5" },
+    topics: [
+      {
+        title: "Solidity fundamentals I",
+        description: "Types, variables, functions and contract structure.",
+      },
+      {
+        title: "Solidity fundamentals II",
+        description: "Events, errors, modifiers and common patterns.",
+      },
+    ],
   },
   {
     number: "03",
@@ -217,6 +252,16 @@ export const modules = [
     description: "Language fundamentals applied to blockchain.",
     level: "Intermediate",
     accent: { from: "#3dbed5", to: "#2ca89f" },
+    topics: [
+      {
+        title: "Rust fundamentals",
+        description: "Ownership, borrowing, types and language structure.",
+      },
+      {
+        title: "Rust mini-project",
+        description: "Hands-on practice focused on a blockchain context.",
+      },
+    ],
   },
   {
     number: "04",
@@ -224,6 +269,32 @@ export const modules = [
     description: "Layer 2 deployment and full dApp construction.",
     level: "Advanced",
     accent: { from: "#3d43e0", to: "#c7f73a" },
+    topics: [
+      {
+        title: "Intro to Blockchain & Layer 2",
+        description: "Rollups, costs and L2 architecture.",
+      },
+      {
+        title: "Scaffold-Eth: smart contracts & deployment",
+        description: "Setup, deploy and testing with Scaffold-Eth.",
+      },
+      {
+        title: "Arbitrum ecosystem & deployment",
+        description: "Tooling, RPCs and deploying on Arbitrum.",
+      },
+      {
+        title: "Stylus / Rust smart contracts & deployment",
+        description: "Writing and deploying Rust contracts with Stylus.",
+      },
+      {
+        title: "Front-end with Scaffold-Stylus",
+        description: "UI wired to contracts on Stylus.",
+      },
+      {
+        title: "Build full dApps with ARBuilder",
+        description: "End-to-end assembly of your final project.",
+      },
+    ],
   },
 ] as const;
 
