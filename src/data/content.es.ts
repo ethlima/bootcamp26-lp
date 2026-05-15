@@ -62,7 +62,7 @@ export const hero = {
   headingLine2Highlight: "dApp",
   headingLine3: "en Arbitrum.",
   description:
-    "Bootcamp Gratuito intensivo de 6 semanas para devs que quieren shipear su primera dApp en Arbitrum con Stylus, Rust y Solidity.",
+    "Bootcamp Internacional Gratuito intensivo de 6 semanas para devs que quieren shipear su primera dApp en Arbitrum con Stylus, Rust y Solidity.",
   llamaAlt: "Bootcamp Ethereum Lima — llama mascota",
   badgeLabel: "Próximo proyecto",
   badgeProject: "dApp en Stylus",
@@ -75,7 +75,7 @@ export const sections = {
     headingHighlight: "deploya",
     headingPost: " tu primera dApp en Arbitrum Stylus.",
     body1:
-      "Bootcamp práctico para devs que quieren shipear en Web3. Construyes y deployas una dApp completa en Arbitrum Stylus.",
+      "Bootcamp internacional práctico para devs que quieren shipear en Web3. Construyes y deployas una dApp completa en Arbitrum Stylus.",
     body2:
       "Trabajas con el stack actual del ecosistema Ethereum — Solidity, Rust, herramientas reales — con foco en ejecución y no solo teoría.",
     statWeeks: "semanas",

@@ -67,7 +67,7 @@ export const hero = {
   headingLine2Highlight: "dApp",
   headingLine3: "on Arbitrum.",
   description:
-    "Intensive 6-week bootcamp for devs ready to ship their first dApp on Arbitrum with Stylus, Rust and Solidity.",
+    "Intensive 6-week International bootcamp for devs ready to ship their first dApp on Arbitrum with Stylus, Rust and Solidity.",
   llamaAlt: "Bootcamp Ethereum Lima — llama mascot",
   badgeLabel: "Next project",
   badgeProject: "dApp on Stylus",
@@ -80,7 +80,7 @@ export const sections = {
     headingHighlight: "deploy",
     headingPost: " your first dApp on Arbitrum Stylus.",
     body1:
-      "Practical bootcamp for devs ready to ship on Web3. You build and deploy a complete dApp on Arbitrum Stylus.",
+      "Practical international bootcamp for devs ready to ship on Web3. You build and deploy a complete dApp on Arbitrum Stylus.",
     body2:
       "You work with the current Ethereum stack — Solidity, Rust, real tooling — focused on execution, not just theory.",
     statWeeks: "weeks",
