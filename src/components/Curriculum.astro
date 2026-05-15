@@ -188,6 +188,22 @@ const NODE_TEXT_ON: Record<string, string> = {
       );
   }
 
+  @media (max-width: 1024px) {
+    .curr-node:hover,
+    .curr-topic:hover,
+    .card:hover {
+      transform: none !important;
+    }
+    .curr-rail,
+    .card {
+      transition: none !important;
+    }
+    /* Hide decorative glows on mobile for better performance */
+    :global(.absolute.rounded-full.blur-3xl) {
+      display: none !important;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .curr-node,
     .curr-topic {

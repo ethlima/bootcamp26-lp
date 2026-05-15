@@ -321,6 +321,29 @@ details[open] .faq-icon { transform: rotate(45deg); }
   transform: scaleX(1);
 }
 
+/* === Mobile performance optimizations === */
+@media (max-width: 1024px) {
+  .reveal,
+  .reveal-stagger > *,
+  .hero-anim,
+  .hero-anim-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .glow-hero {
+    animation: none !important;
+    background-size: cover !important;
+  }
+
+  .animate-float,
+  .animate-pulse-dot {
+    animation: none !important;
+  }
+}
+
 /* === prefers-reduced-motion === */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
