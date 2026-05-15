@@ -3,6 +3,7 @@ import Button from "./ui/Button.astro";
 import ThemeToggle from "./ui/ThemeToggle.astro";
 import { getContent, isLocale, getOtherLocale, DEFAULT_LOCALE } from "@/i18n";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import CountdownBanner from "./CountdownBanner.astro";
 
 const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
 const t = getContent(lang);
@@ -11,6 +12,7 @@ const otherUrl = getRelativeLocaleUrl(otherLang, "");
 ---
 
 <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-bg-translucent border-b border-border">
+  <CountdownBanner />
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href={getRelativeLocaleUrl(lang, "")} class="flex items-center gap-2.5 group">
       <img

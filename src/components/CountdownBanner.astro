@@ -1,0 +1,85 @@
+---
+import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
+
+const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCALE;
+const t = getContent(lang);
+
+/**
+ * CAMBIA LA HORA AQUÍ:
+ * El formato es AAAA-MM-DDTHH:MM:SS
+ * Ejemplo: 2026-05-30T16:00:00 (30 de mayo a las 4:00 PM)
+ */
+const targetDate = "2026-05-30T16:00:00"; 
+---
+
+<div id="countdown-banner" class="bg-bootcamp-lime text-ink py-2.5 md:py-2 relative overflow-hidden hidden border-b border-black/10 shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-x-6 gap-y-3 text-[11px] md:text-[13px] font-bold tracking-tight text-center md:text-left">
+    <span class="opacity-100 leading-tight">
+      {t.ui.countdownSlogan}
+    </span>
+    
+    <div id="timer" class="flex gap-2.5 font-mono animate-pulse-subtle">
+      <div class="flex items-center gap-0.5 bg-black/10 px-1.5 py-0.5 rounded">
+        <span id="days">00</span><span class="text-[9px] opacity-60 font-sans ml-0.5">D</span>
+      </div>
+      <div class="flex items-center gap-0.5 bg-black/10 px-1.5 py-0.5 rounded">
+        <span id="hours">00</span><span class="text-[9px] opacity-60 font-sans ml-0.5">H</span>
+      </div>
+      <div class="flex items-center gap-0.5 bg-black/10 px-1.5 py-0.5 rounded">
+        <span id="minutes">00</span><span class="text-[9px] opacity-60 font-sans ml-0.5">M</span>
+      </div>
+      <div class="flex items-center gap-0.5 bg-black/10 px-1.5 py-0.5 rounded">
+        <span id="seconds">00</span><span class="text-[9px] opacity-60 font-sans ml-0.5">S</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ targetDate }}>
+  const target = new Date(targetDate).getTime();
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const distance = target - now;
+
+    const banner = document.getElementById("countdown-banner");
+    if (!banner) return;
+
+    if (distance < 0) {
+      banner.classList.add("hidden");
+      banner.style.display = 'none';
+      return;
+    }
+
+    banner.classList.remove("hidden");
+    banner.style.display = 'block';
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const dEl = document.getElementById("days");
+    const hEl = document.getElementById("hours");
+    const mEl = document.getElementById("minutes");
+    const sEl = document.getElementById("seconds");
+
+    if (dEl) dEl.innerText = days.toString().padStart(2, '0');
+    if (hEl) hEl.innerText = hours.toString().padStart(2, '0');
+    if (mEl) mEl.innerText = minutes.toString().padStart(2, '0');
+    if (sEl) sEl.innerText = seconds.toString().padStart(2, '0');
+  }
+
+  setInterval(updateTimer, 1000);
+  updateTimer();
+</script>
+
+<style>
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(0.98); }
+  }
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>

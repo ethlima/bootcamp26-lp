@@ -58,6 +58,7 @@ export const ui = {
   programPdf: "View program",
   iHaveAQuestion: "I have a question",
   switchTo: "ES",
+  countdownSlogan: "Master Web3 with Ethereum Lima and Arbitrum! Join the International Bootcamp. Starting in:",
 } as const;
 
 export const hero = {

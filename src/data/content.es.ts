@@ -53,6 +53,7 @@ export const ui = {
   programPdf: "Ver programa",
   iHaveAQuestion: "Tengo una pregunta",
   switchTo: "EN",
+  countdownSlogan: "¡Domina Web3 con Ethereum Lima y Arbitrum! Únete al Bootcamp Internacional. Iniciamos en:",
 } as const;
 
 export const hero = {
