@@ -50,7 +50,7 @@ export const navLinks = [
 export const ui = {
   apply: "Aplicar",
   applyNow: "Aplicar ahora",
-  programPdf: "Ver programa (PDF)",
+  programPdf: "Ver programa",
   iHaveAQuestion: "Tengo una pregunta",
   switchTo: "EN",
 } as const;

@@ -55,7 +55,7 @@ export const navLinks = [
 export const ui = {
   apply: "Apply",
   applyNow: "Apply now",
-  programPdf: "View program (PDF)",
+  programPdf: "View program",
   iHaveAQuestion: "I have a question",
   switchTo: "ES",
 } as const;
