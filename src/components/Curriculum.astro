@@ -17,6 +17,14 @@ const NODE_TEXT_ON: Record<string, string> = {
   "#3dbed5": "#0b0717",
   "#3d43e0": "#fff8ee",
 };
+
+const speakerInitials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
 ---
 
 <Section id="curriculum" variant="muted">
@@ -36,6 +44,18 @@ const NODE_TEXT_ON: Record<string, string> = {
       t.modules.map((mod) => {
         const accent = mod.accent.from;
         const nodeFg = NODE_TEXT_ON[accent] ?? "#fff8ee";
+        const uniqueSpeakers = mod.topics.reduce<
+          { name: string; handle: string | null; role: string | null; photo: string }[]
+        >((acc, topic) => {
+          if (topic.speaker && !acc.find((s) => s.name === topic.speaker!.name)) {
+            acc.push(topic.speaker);
+          }
+          const co = "coSpeaker" in topic ? topic.coSpeaker : null;
+          if (co && !acc.find((s) => s.name === co.name)) {
+            acc.push(co);
+          }
+          return acc;
+        }, []);
         return (
           <Fragment>
             <div class="curr-rail relative flex justify-center pt-5 sm:pt-[26px] z-10">
@@ -72,6 +92,58 @@ const NODE_TEXT_ON: Record<string, string> = {
                   {mod.description}
                 </p>
 
+                {uniqueSpeakers.length > 0 && (
+                  <>
+                    <div
+                      class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] mb-3"
+                      style={`color: ${accent};`}
+                    >
+                      {s.speakersLabel.toUpperCase()}{" "}
+                      <span class="text-fg-muted">· {uniqueSpeakers.length}</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5 mb-6">
+                      {uniqueSpeakers.map((sp) => (
+                        <div
+                          class="curr-speaker flex items-center gap-3 rounded-xl border border-border bg-surface-2 py-2 pl-2 pr-4"
+                          style={`--curr-accent: ${accent};`}
+                        >
+                          <span
+                            class="curr-avatar relative w-12 h-12 sm:w-14 sm:h-14 rounded-full grid place-items-center overflow-hidden flex-shrink-0 font-display font-bold text-base leading-none"
+                            style={`background-color: ${accent}; color: ${nodeFg};`}
+                            aria-hidden="true"
+                          >
+                            <span class="curr-avatar-initials">{speakerInitials(sp.name)}</span>
+                            <img
+                              src={sp.photo}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                              class="curr-avatar-img absolute inset-0 w-full h-full object-cover"
+                              onerror="this.style.display='none'"
+                            />
+                          </span>
+                          <div class="min-w-0">
+                            <p class="font-semibold text-[14px] leading-tight">{sp.name}</p>
+                            {sp.handle && (
+                              <p
+                                class="font-mono text-[11px] leading-tight mt-0.5"
+                                style={`color: ${accent};`}
+                              >
+                                @{sp.handle}
+                              </p>
+                            )}
+                            {sp.role && (
+                              <p class="text-[12px] text-fg-muted leading-tight mt-0.5">
+                                {sp.role}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+
                 <div
                   class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] mb-3"
                   style={`color: ${accent};`}
@@ -83,7 +155,7 @@ const NODE_TEXT_ON: Record<string, string> = {
                 <ul class="grid sm:grid-cols-2 gap-2.5 list-none p-0 m-0">
                   {mod.topics.map((topic, ti) => (
                     <li
-                      class="curr-topic rounded-xl border border-border bg-surface-2 p-3.5"
+                      class="curr-topic rounded-xl border border-border bg-surface-2 p-3.5 flex flex-col"
                       style={`--curr-accent: ${accent};`}
                     >
                       <div
@@ -93,7 +165,23 @@ const NODE_TEXT_ON: Record<string, string> = {
                         {s.topicPrefix} {String(ti + 1).padStart(2, "0")}
                       </div>
                       <p class="font-semibold text-[14.5px] leading-snug mb-0.5">{topic.title}</p>
-                      <p class="text-[13px] text-fg-muted leading-relaxed">{topic.description}</p>
+                      <p class="text-[13px] text-fg-muted leading-relaxed mb-3">{topic.description}</p>
+
+                      <div class="curr-meta mt-auto pt-3 border-t border-border flex items-center gap-2 flex-wrap justify-between">
+                        <span class={`text-[12.5px] leading-tight truncate ${topic.speaker ? "font-semibold" : "font-medium text-fg-muted italic"}`}>
+                          {topic.speaker
+                            ? ("coSpeaker" in topic && topic.coSpeaker
+                                ? `${topic.speaker.name} · ${topic.coSpeaker.name}`
+                                : topic.speaker.name)
+                            : s.speakerTbaLabel}
+                        </span>
+                        <span
+                          class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-md whitespace-nowrap"
+                          style={`background-color: ${accent}1a; color: ${accent};`}
+                        >
+                          {topic.schedule.day} {topic.schedule.date} · {topic.schedule.time}
+                        </span>
+                      </div>
                     </li>
                   ))}
                 </ul>
