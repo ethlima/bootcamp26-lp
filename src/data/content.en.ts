@@ -439,6 +439,17 @@ export const sponsor = {
 
 export const allies = [
   {
+    name: "Escuela de Posgrado USIL",
+    url: "https://posgrado.usil.edu.pe/",
+    logo: "/assets/sponsors/escuela-posgrado-usil.svg",
+    logoAlt: "Escuela de Posgrado USIL",
+    showName: false,
+    nameColor: null,
+    nameFont: null,
+    nameWeight: null,
+    nameLetterSpacing: null,
+  },
+  {
     name: "Quantum3 Labs",
     url: "https://www.quantum3labs.com/",
     logo: "/assets/sponsors/quantum3.svg",
