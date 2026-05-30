@@ -467,6 +467,17 @@ export const allies = [
     nameWeight: "400",
     nameLetterSpacing: null,
   },
+  {
+    name: "Patronato UNI",
+    url: "#",
+    logo: "/assets/sponsors/patronato.png",
+    logoAlt: "Patronato UNI",
+    showName: false,
+    nameColor: null,
+    nameFont: null,
+    nameWeight: null,
+    nameLetterSpacing: null,
+  },
 ] as const;
 
 export const process = [
