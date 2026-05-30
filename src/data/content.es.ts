@@ -251,7 +251,7 @@ export const modules = [
           role: "Core Team Ethereum Lima",
           photo: "/assets/speakers/yami.jpg",
         },
-        schedule: { day: "Vie", date: "05/06", time: "19:00–20:00" },
+        schedule: { day: "Sáb", date: "06/06", time: "18:00–19:30" },
       },
     ],
   },
@@ -303,7 +303,7 @@ export const modules = [
           role: "Software Engineer · Rust Perú",
           photo: "/assets/speakers/henry-keniding.jpg",
         },
-        schedule: { day: "Sáb", date: "06/06", time: "18:00–20:00" },
+        schedule: { day: "Vie", date: "05/06", time: "19:00–21:00" },
       },
       {
         title: "Miniproyecto en Rust",
