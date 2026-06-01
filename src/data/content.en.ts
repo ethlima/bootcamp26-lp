@@ -23,7 +23,7 @@ export const site = {
 
 export const cohort = {
   label: "Cohort 2026",
-  applicationsOpen: "applications open",
+  applicationsOpen: "last registrations",
   startLabel: "May 30",
   endLabel: "Jul 4",
   startDate: "May 30",
@@ -58,7 +58,7 @@ export const ui = {
   programPdf: "View program",
   iHaveAQuestion: "I have a question",
   switchTo: "ES",
-  countdownSlogan: "Master Web3 with Ethereum Lima and Arbitrum! Join the International Bootcamp. Starting in:",
+  countdownSlogan: "Last bootcamp registrations until June 3rd at 11:59pm! Closing in:",
 } as const;
 
 export const hero = {

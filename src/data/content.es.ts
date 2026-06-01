@@ -18,7 +18,7 @@ export const site = {
 
 export const cohort = {
   label: "Cohorte 2026",
-  applicationsOpen: "aplicaciones abiertas",
+  applicationsOpen: "últimas inscripciones",
   startLabel: "30 mayo",
   endLabel: "4 julio",
   startDate: "30 de mayo",
@@ -53,7 +53,7 @@ export const ui = {
   programPdf: "Ver programa",
   iHaveAQuestion: "Tengo una pregunta",
   switchTo: "EN",
-  countdownSlogan: "¡Domina Web3 con Ethereum Lima y Arbitrum! Únete al Bootcamp Internacional. Iniciamos en:",
+  countdownSlogan: "¡Últimas inscripciones del bootcamp hasta el 3 de junio a las 11:59pm! Cierre en:",
 } as const;
 
 export const hero = {
