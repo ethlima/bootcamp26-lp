@@ -112,6 +112,8 @@ export const sections = {
     modulePrefix: "MODULE",
     topicsLabel: "Topics",
     topicPrefix: "TOPIC",
+    dateLabel: "Date",
+    timeLabel: "Time",
     speakerTbaLabel: "Speaker TBA",
     speakersLabel: "Speakers",
     outcomeEyebrow: "Outcome",

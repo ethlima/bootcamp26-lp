@@ -107,6 +107,8 @@ export const sections = {
     modulePrefix: "MÓDULO",
     topicsLabel: "Temas",
     topicPrefix: "TEMA",
+    dateLabel: "Fecha",
+    timeLabel: "Hora",
     speakerTbaLabel: "Speaker por confirmar",
     speakersLabel: "Speakers",
     outcomeEyebrow: "Resultado",

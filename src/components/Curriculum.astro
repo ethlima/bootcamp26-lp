@@ -1,7 +1,6 @@
 ---
 import Section from "./ui/Section.astro";
 import Eyebrow from "./ui/Eyebrow.astro";
-import CardGlow from "./ui/CardGlow.astro";
 import Icon from "./ui/Icon.astro";
 import { getContent, isLocale, DEFAULT_LOCALE } from "@/i18n";
 
@@ -9,7 +8,7 @@ const lang = isLocale(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LOCAL
 const t = getContent(lang);
 const s = t.sections.curriculum;
 
-// Contrast text color for the numbered node by accent.from.
+// Contrast text color for the module chip by accent.from.
 // Coral & bootcamp-blue are dark → cream text. Orange & cyan are bright → ink text.
 const NODE_TEXT_ON: Record<string, string> = {
   "#e64a30": "#fff8ee",
@@ -25,6 +24,44 @@ const speakerInitials = (name: string) =>
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase() ?? "")
     .join("");
+
+// Flatten every topic across all modules into a single chronological schedule.
+type Person = { name: string; handle: string | null; role: string | null; photo: string };
+type Sess = {
+  moduleNumber: string;
+  moduleTitle: string;
+  accent: string;
+  title: string;
+  description: string;
+  speaker: Person | null;
+  coSpeaker: Person | null;
+  day: string;
+  date: string;
+  time: string;
+};
+
+const sessions: Sess[] = t.modules.flatMap((mod) =>
+  mod.topics.map((topic) => ({
+    moduleNumber: mod.number,
+    moduleTitle: mod.title,
+    accent: mod.accent.from,
+    title: topic.title,
+    description: topic.description,
+    speaker: topic.speaker ?? null,
+    coSpeaker: "coSpeaker" in topic ? (topic.coSpeaker as Person) : null,
+    day: topic.schedule.day,
+    date: topic.schedule.date,
+    time: topic.schedule.time,
+  })),
+);
+
+// Sort by date (dd/mm, 2026) then by start time.
+const sortKey = (x: Sess) => {
+  const [d, m] = x.date.split("/").map(Number);
+  const [h, min] = x.time.split("–")[0].split(":").map(Number);
+  return m * 1e6 + d * 1e4 + h * 100 + min;
+};
+sessions.sort((a, b) => sortKey(a) - sortKey(b));
 ---
 
 <Section id="curriculum" variant="muted">
@@ -33,239 +70,230 @@ const speakerInitials = (name: string) =>
     {s.headingLine1}<br />
     {s.headingLine2Pre}<span class="gradient-llama">{s.headingLine2Highlight}</span>{s.headingLine2Post}
   </h2>
-  <p class="text-lg text-fg-muted max-w-2xl mb-12">
+  <p class="text-lg text-fg-muted max-w-2xl mb-10">
     {s.body}
   </p>
 
-  <div
-    class="curr-timeline relative grid grid-cols-[56px_1fr] sm:grid-cols-[88px_1fr] gap-x-3.5 sm:gap-x-6 gap-y-7 reveal-stagger"
-  >
+  <div class="curr-sched card overflow-hidden p-0 reveal">
+    {/* Header row — desktop only */}
+    <div
+      class="curr-head font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-fg-muted"
+    >
+      <span style="grid-area: mod;">{s.modulePrefix}</span>
+      <span style="grid-area: date;">{s.dateLabel}</span>
+      <span style="grid-area: time;">{s.timeLabel}</span>
+      <span style="grid-area: topic;">{s.topicsLabel}</span>
+      <span style="grid-area: speaker;">{s.speakersLabel}</span>
+    </div>
+
     {
-      t.modules.map((mod) => {
-        const accent = mod.accent.from;
-        const nodeFg = NODE_TEXT_ON[accent] ?? "#fff8ee";
-        const uniqueSpeakers = mod.topics.reduce<
-          { name: string; handle: string | null; role: string | null; photo: string }[]
-        >((acc, topic) => {
-          if (topic.speaker && !acc.find((s) => s.name === topic.speaker!.name)) {
-            acc.push(topic.speaker);
-          }
-          const co = "coSpeaker" in topic ? topic.coSpeaker : null;
-          if (co && !acc.find((s) => s.name === co.name)) {
-            acc.push(co);
-          }
-          return acc;
-        }, []);
+      sessions.map((row, i) => {
+        const accent = row.accent;
+        const chipFg = NODE_TEXT_ON[accent] ?? "#fff8ee";
+        const newDay = i === 0 || sessions[i - 1].date !== row.date;
+        const speakerName = row.speaker
+          ? row.coSpeaker
+            ? `${row.speaker.name} · ${row.coSpeaker.name}`
+            : row.speaker.name
+          : s.speakerTbaLabel;
         return (
-          <Fragment>
-            <div class="curr-rail relative flex justify-center pt-5 sm:pt-[26px] z-10">
-              <div
-                class="curr-node w-12 h-12 sm:w-16 sm:h-16 rounded-2xl grid place-items-center font-display font-extrabold text-xl sm:text-2xl leading-none"
-                style={`background-color: ${accent}; color: ${nodeFg};`}
+          <div
+            class={`curr-row ${newDay ? "curr-row-newday" : ""}`}
+            style={`--curr-accent: ${accent};`}
+          >
+            {/* Module chip */}
+            <div class="curr-cell-mod" style="grid-area: mod;">
+              <span
+                class="inline-grid place-items-center w-9 h-9 rounded-lg font-display font-extrabold text-sm leading-none"
+                style={`background-color: ${accent}; color: ${chipFg};`}
+                title={`${s.modulePrefix} ${row.moduleNumber} · ${row.moduleTitle}`}
               >
-                {mod.number}
-              </div>
+                {row.moduleNumber}
+              </span>
             </div>
 
-            <article class="card relative overflow-hidden p-6 sm:p-7 lg:p-8">
-              <CardGlow color={accent} />
-              <div class="relative">
-                <div class="flex items-center justify-between gap-4 mb-2.5">
-                  <span
-                    class="font-mono text-xs font-semibold uppercase tracking-[0.25em]"
-                    style={`color: ${accent};`}
-                  >
-                    {s.modulePrefix} {mod.number}
-                  </span>
-                  <span
-                    class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] px-2.5 py-1 rounded-full border text-fg whitespace-nowrap"
-                    style={`background-color: ${accent}26; border-color: ${accent}66;`}
-                  >
-                    {mod.level}
-                  </span>
-                </div>
+            {/* Date + day */}
+            <div class="curr-cell-date" style="grid-area: date;">
+              <span class="font-semibold text-[14px] leading-tight">{row.date}</span>
+              <span class="text-[12px] text-fg-muted leading-tight"> {row.day}</span>
+            </div>
 
-                <h3 class="font-display text-2xl lg:text-[28px] font-bold leading-tight mb-2">
-                  {mod.title}
-                </h3>
-                <p class="text-fg-muted leading-relaxed mb-6 max-w-[56ch]">
-                  {mod.description}
-                </p>
+            {/* Time */}
+            <div style="grid-area: time;">
+              <span
+                class="font-mono text-[12px] font-semibold px-2 py-1 rounded-md whitespace-nowrap"
+                style={`background-color: ${accent}1a; color: ${accent};`}
+              >
+                {row.time}
+              </span>
+            </div>
 
-                {uniqueSpeakers.length > 0 && (
-                  <>
-                    <div
-                      class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] mb-3"
-                      style={`color: ${accent};`}
-                    >
-                      {s.speakersLabel.toUpperCase()}{" "}
-                      <span class="text-fg-muted">· {uniqueSpeakers.length}</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2.5 mb-6">
-                      {uniqueSpeakers.map((sp) => (
-                        <div
-                          class="curr-speaker flex items-center gap-3 rounded-xl border border-border bg-surface-2 py-2 pl-2 pr-4"
-                          style={`--curr-accent: ${accent};`}
-                        >
-                          <span
-                            class="curr-avatar relative w-12 h-12 sm:w-14 sm:h-14 rounded-full grid place-items-center overflow-hidden flex-shrink-0 font-display font-bold text-base leading-none"
-                            style={`background-color: ${accent}; color: ${nodeFg};`}
-                            aria-hidden="true"
-                          >
-                            <span class="curr-avatar-initials">{speakerInitials(sp.name)}</span>
-                            <img
-                              src={sp.photo}
-                              alt=""
-                              loading="lazy"
-                              decoding="async"
-                              class="curr-avatar-img absolute inset-0 w-full h-full object-cover"
-                              onerror="this.style.display='none'"
-                            />
-                          </span>
-                          <div class="min-w-0">
-                            <p class="font-semibold text-[14px] leading-tight">{sp.name}</p>
-                            {sp.handle && (
-                              <p
-                                class="font-mono text-[11px] leading-tight mt-0.5"
-                                style={`color: ${accent};`}
-                              >
-                                @{sp.handle}
-                              </p>
-                            )}
-                            {sp.role && (
-                              <p class="text-[12px] text-fg-muted leading-tight mt-0.5">
-                                {sp.role}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                )}
+            {/* Topic */}
+            <div style="grid-area: topic;" class="min-w-0">
+              <span class="font-semibold text-[15px] leading-snug block">{row.title}</span>
+              <span class="hidden md:block text-[12.5px] text-fg-muted leading-relaxed mt-0.5 max-w-[42ch]">
+                {row.description}
+              </span>
+            </div>
 
-                <div
-                  class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] mb-3"
-                  style={`color: ${accent};`}
+            {/* Speaker */}
+            <div style="grid-area: speaker;" class="curr-cell-speaker">
+              {row.speaker && (
+                <span
+                  class="curr-avatar relative grid w-9 h-9 rounded-full place-items-center overflow-hidden flex-shrink-0 font-display font-bold text-[12px] leading-none"
+                  style={`background-color: ${accent}; color: ${chipFg};`}
+                  aria-hidden="true"
                 >
-                  {s.topicsLabel.toUpperCase()}{" "}
-                  <span class="text-fg-muted">· {mod.topics.length}</span>
-                </div>
-
-                <ul class="grid sm:grid-cols-2 gap-2.5 list-none p-0 m-0">
-                  {mod.topics.map((topic, ti) => (
-                    <li
-                      class="curr-topic rounded-xl border border-border bg-surface-2 p-3.5 flex flex-col"
-                      style={`--curr-accent: ${accent};`}
-                    >
-                      <div
-                        class="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] mb-1"
-                        style={`color: ${accent};`}
-                      >
-                        {s.topicPrefix} {String(ti + 1).padStart(2, "0")}
-                      </div>
-                      <p class="font-semibold text-[14.5px] leading-snug mb-0.5">{topic.title}</p>
-                      <p class="text-[13px] text-fg-muted leading-relaxed mb-3">{topic.description}</p>
-
-                      <div class="curr-meta mt-auto pt-3 border-t border-border flex items-center gap-2 flex-wrap justify-between">
-                        <span class={`text-[12.5px] leading-tight truncate ${topic.speaker ? "font-semibold" : "font-medium text-fg-muted italic"}`}>
-                          {topic.speaker
-                            ? ("coSpeaker" in topic && topic.coSpeaker
-                                ? `${topic.speaker.name} · ${topic.coSpeaker.name}`
-                                : topic.speaker.name)
-                            : s.speakerTbaLabel}
-                        </span>
-                        <span
-                          class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-md whitespace-nowrap"
-                          style={`background-color: ${accent}1a; color: ${accent};`}
-                        >
-                          {topic.schedule.day} {topic.schedule.date} · {topic.schedule.time}
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          </Fragment>
+                  <span>{speakerInitials(row.speaker.name)}</span>
+                  <img
+                    src={row.speaker.photo}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    onerror="this.style.display='none'"
+                  />
+                </span>
+              )}
+              <span
+                class={`text-[13.5px] leading-tight ${row.speaker ? "font-semibold" : "font-medium text-fg-muted italic"}`}
+              >
+                {speakerName}
+              </span>
+            </div>
+          </div>
         );
       })
     }
+  </div>
 
-    {/* === Finish row: el deploy === */}
-    <div class="curr-rail relative flex justify-center pt-5 sm:pt-[26px] z-10">
+  {/* === Outcome card === */}
+  <article class="card curr-finish relative overflow-hidden p-6 sm:p-7 lg:p-8 mt-6">
+    <div class="relative flex items-start gap-4">
       <div
-        class="curr-node w-12 h-12 sm:w-16 sm:h-16 rounded-2xl grid place-items-center bg-bootcamp-lime text-ink"
+        class="curr-node w-12 h-12 rounded-2xl grid place-items-center bg-bootcamp-lime text-ink flex-shrink-0"
       >
-        <Icon name="check" class="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={3} />
+        <Icon name="check" class="w-5 h-5" strokeWidth={3} />
       </div>
-    </div>
-    <article class="card curr-finish relative overflow-hidden p-6 sm:p-7 lg:p-8">
-      <div class="relative">
-        <span
-          class="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-bootcamp-blue"
-        >
+      <div>
+        <span class="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-bootcamp-blue">
           {s.outcomeEyebrow}
         </span>
-        <h3 class="font-display text-2xl lg:text-[28px] font-bold leading-tight mt-2.5 mb-2">
+        <h3 class="font-display text-2xl lg:text-[28px] font-bold leading-tight mt-2 mb-2">
           {s.outcomeTitle}
         </h3>
         <p class="text-fg-muted leading-relaxed max-w-[60ch]">{s.outcomeBody}</p>
       </div>
-    </article>
-  </div>
+    </div>
+  </article>
 </Section>
 
 <style>
-  /* Continuous brand-gradient connector running behind the nodes */
-  .curr-timeline::before {
-    content: "";
-    position: absolute;
-    top: 44px;
-    bottom: 44px;
-    left: 28px;
-    width: 2px;
-    transform: translateX(-1px);
-    background: linear-gradient(
-      to bottom,
-      var(--color-coral),
-      var(--color-orange) 22%,
-      var(--color-cyan) 50%,
-      var(--color-teal) 65%,
-      var(--color-bootcamp-blue) 85%,
-      var(--color-bootcamp-lime) 100%
-    );
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 0;
+  /* === Column template shared by header + rows on desktop === */
+  .curr-head,
+  .curr-row {
+    --curr-cols: auto auto auto minmax(0, 1fr) minmax(160px, auto);
   }
+
+  /* ---------- MOBILE (default): stacked cards ---------- */
+  .curr-sched {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0.6rem;
+    background: transparent;
+    border: none;
+  }
+  .curr-head {
+    display: none;
+  }
+  .curr-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "mod    date"
+      "time   time"
+      "topic  topic"
+      "speaker speaker";
+    align-items: center;
+    gap: 0.55rem 0.75rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.9rem;
+    background: var(--color-surface);
+    border-left: 3px solid var(--curr-accent);
+  }
+  .curr-cell-date {
+    justify-self: end;
+    text-align: right;
+  }
+  .curr-cell-speaker {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  }
+
+  /* ---------- DESKTOP (sm+): table rows ---------- */
   @media (min-width: 640px) {
-    .curr-timeline::before {
-      top: 58px;
-      bottom: 58px;
-      left: 44px;
+    .curr-sched {
+      display: block;
+      gap: 0;
+      padding: 0;
+      border: 1px solid var(--color-border);
+      border-radius: 1rem;
+      background: var(--color-surface);
+    }
+    .curr-head {
+      display: grid;
+      grid-template-columns: var(--curr-cols);
+      grid-template-areas: "mod date time topic speaker";
+      align-items: center;
+      gap: 0 0.75rem;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface-2);
+    }
+    .curr-row {
+      grid-template-columns: var(--curr-cols);
+      grid-template-areas: "mod date time topic speaker";
+      align-items: center;
+      gap: 0 0.75rem;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+      background: transparent;
+      transition: background-color 0.18s ease;
+    }
+    .curr-row:last-child {
+      border-bottom: none;
+    }
+    /* Thicker divider when the calendar day changes → groups sessions */
+    .curr-row-newday {
+      border-top: 2px solid var(--color-border);
+    }
+    .curr-row:hover {
+      background: color-mix(in srgb, var(--curr-accent) 7%, transparent);
+    }
+    .curr-cell-date {
+      justify-self: start;
+      text-align: left;
+    }
+    .curr-cell-speaker {
+      padding-top: 0;
+      border-top: none;
     }
   }
 
-  /* Ring matches section bg so the line appears to pass behind the node */
-  .curr-node {
-    box-shadow: 0 0 0 6px var(--color-surface-2);
-    transition: transform 0.25s ease;
-  }
-  .curr-node:hover {
-    transform: scale(1.08) rotate(-3deg);
+  @media (prefers-reduced-motion: reduce) {
+    .curr-row {
+      transition: none;
+    }
   }
 
-  /* Topic cards: accent border + lift on hover */
-  .curr-topic {
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-  .curr-topic:hover {
-    border-color: var(--curr-accent);
-    transform: translateY(-1px);
-  }
-
-  /* Subtle tint on the outcome card to nudge it apart from modules */
+  /* Subtle tint on the outcome card to nudge it apart from the table */
   .curr-finish {
     background:
       var(--card-overlay, transparent),
@@ -274,31 +302,5 @@ const speakerInitials = (name: string) =>
         color-mix(in srgb, var(--color-bootcamp-blue) 6%, var(--color-surface)),
         var(--color-surface) 70%
       );
-  }
-
-  @media (max-width: 1024px) {
-    .curr-node:hover,
-    .curr-topic:hover,
-    .card:hover {
-      transform: none !important;
-    }
-    .curr-rail,
-    .card {
-      transition: none !important;
-    }
-    /* Hide decorative glows on mobile for better performance */
-    :global(.absolute.rounded-full.blur-3xl) {
-      display: none !important;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .curr-node,
-    .curr-topic {
-      transition: none;
-    }
-    .curr-node:hover {
-      transform: none;
-    }
   }
 </style>
