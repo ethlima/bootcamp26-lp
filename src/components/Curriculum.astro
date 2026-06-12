@@ -26,7 +26,13 @@ const speakerInitials = (name: string) =>
     .join("");
 
 // Flatten every topic across all modules into a single chronological schedule.
-type Person = { name: string; handle: string | null; role: string | null; photo: string };
+type Person = {
+  name: string;
+  handle: string | null;
+  role: string | null;
+  photo: string;
+  country?: string;
+};
 type Sess = {
   moduleNumber: string;
   moduleTitle: string;
@@ -96,6 +102,8 @@ sessions.sort((a, b) => sortKey(a) - sortKey(b));
             ? `${row.speaker.name} · ${row.coSpeaker.name}`
             : row.speaker.name
           : s.speakerTbaLabel;
+        const countries = [row.speaker?.country, row.coSpeaker?.country].filter(Boolean);
+        const speakerCountry = [...new Set(countries)].join(" · ");
         return (
           <div
             class={`curr-row ${newDay ? "curr-row-newday" : ""}`}
@@ -155,10 +163,17 @@ sessions.sort((a, b) => sortKey(a) - sortKey(b));
                   />
                 </span>
               )}
-              <span
-                class={`text-[13.5px] leading-tight ${row.speaker ? "font-semibold" : "font-medium text-fg-muted italic"}`}
-              >
-                {speakerName}
+              <span class="min-w-0">
+                <span
+                  class={`text-[13.5px] leading-tight block ${row.speaker ? "font-semibold" : "font-medium text-fg-muted italic"}`}
+                >
+                  {speakerName}
+                </span>
+                {speakerCountry && (
+                  <span class="text-[11.5px] text-fg-muted leading-tight block mt-0.5">
+                    {speakerCountry}
+                  </span>
+                )}
               </span>
             </div>
           </div>
