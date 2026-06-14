@@ -9,13 +9,15 @@ const t = getContent(lang);
  * El formato es AAAA-MM-DDTHH:MM:SS
  * Ejemplo: 2026-06-03T23:59:59 (3 de junio al final del día)
  */
-const targetDate = "2026-06-03T23:59:59"; 
+const targetDate = "2026-07-24T15:00:00";
 ---
 
 <div id="countdown-banner" class="bg-bootcamp-lime text-ink py-2.5 md:py-2 relative overflow-hidden hidden border-b border-black/10 shadow-sm">
   <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-x-6 gap-y-3 text-[11px] md:text-[13px] font-bold tracking-tight text-center md:text-left">
     <span class="opacity-100 leading-tight">
-      {t.ui.countdownSlogan}
+      {t.ui.countdownSlogan} &mdash;
+      <a href="https://hackathon.ethlima.org/en/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:opacity-70 transition-opacity">{t.ui.countdownRegister}</a>
+      &mdash; {t.ui.countdownClosing}
     </span>
     
     <div id="timer" class="flex gap-2.5 font-mono animate-pulse-subtle">

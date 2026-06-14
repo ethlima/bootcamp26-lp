@@ -53,7 +53,9 @@ export const ui = {
   programPdf: "Ver programa",
   iHaveAQuestion: "Tengo una pregunta",
   switchTo: "EN",
-  countdownSlogan: "¡Últimas inscripciones del bootcamp hasta el 3 de junio a las 11:59pm! Cierre en:",
+  countdownSlogan: "🔥 Hackathon Ethereum Lima",
+  countdownRegister: "Registro",
+  countdownClosing: "Cierra en:",
 } as const;
 
 export const hero = {
