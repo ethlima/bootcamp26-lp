@@ -382,7 +382,7 @@ export const modules = [
           country: "Perú",
           countryCode: "pe",
         },
-        schedule: { day: "Sáb", date: "27/06", time: "16:00–17:30" },
+        schedule: { day: "Sáb", date: "27/06", time: "18:00–19:30" },
       },
       {
         title: "Stylus / Rust smart contracts y Deployment",
@@ -395,7 +395,7 @@ export const modules = [
           country: "Perú",
           countryCode: "pe",
         },
-        schedule: { day: "Sáb", date: "27/06", time: "17:30–19:00" },
+        schedule: { day: "Sáb", date: "27/06", time: "19:30–21:00" },
       },
       {
         title: "Front-end con Scaffold-Stylus",
