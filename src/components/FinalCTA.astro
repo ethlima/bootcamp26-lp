@@ -28,10 +28,10 @@ const s = t.sections.finalCta;
     </p>
 
     <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <Button href={t.site.applyUrl} external variant="primary" size="lg">
+      <span class="inline-flex items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap px-8 py-4 text-base bg-bootcamp-lime text-ink opacity-40 cursor-not-allowed select-none shadow-[0_0_40px_-10px_rgba(199,247,58,0.4)]" aria-disabled="true">
         {t.ui.applyNow}
         <Icon name="arrow-right" class="w-4 h-4" strokeWidth={2.5} />
-      </Button>
+      </span>
       <Button href={`mailto:${t.site.contactEmail}`} variant="ghost" size="lg">
         {t.ui.iHaveAQuestion}
       </Button>

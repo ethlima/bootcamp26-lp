@@ -18,7 +18,7 @@ export const site = {
 
 export const cohort = {
   label: "Cohorte 2026",
-  applicationsOpen: "últimas inscripciones",
+  applicationsOpen: "I",
   startLabel: "30 mayo",
   endLabel: "4 julio",
   startDate: "30 de mayo",
