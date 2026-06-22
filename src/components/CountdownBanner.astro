@@ -15,9 +15,7 @@ const targetDate = "2026-07-24T15:00:00";
 <div id="countdown-banner" class="bg-bootcamp-lime text-ink py-2.5 md:py-2 relative overflow-hidden hidden border-b border-black/10 shadow-sm">
   <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-x-6 gap-y-3 text-[11px] md:text-[13px] font-bold tracking-tight text-center md:text-left">
     <span class="opacity-100 leading-tight">
-      {t.ui.countdownSlogan} &mdash;
-      <a href="https://hackathon.ethlima.org/en/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:opacity-70 transition-opacity">{t.ui.countdownRegister}</a>
-      &mdash; {t.ui.countdownClosing}
+      {t.ui.countdownSlogan} &mdash; {t.ui.countdownClosing}
     </span>
     
     <div id="timer" class="flex gap-2.5 font-mono animate-pulse-subtle">
@@ -34,6 +32,15 @@ const targetDate = "2026-07-24T15:00:00";
         <span id="seconds">00</span><span class="text-[9px] opacity-60 font-sans ml-0.5">S</span>
       </div>
     </div>
+
+    <a
+      href="https://hackathon.ethlima.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="countdown-cta-btn"
+    >
+      {t.ui.countdownRegister} →
+    </a>
   </div>
 </div>
 
@@ -83,5 +90,24 @@ const targetDate = "2026-07-24T15:00:00";
   }
   .animate-pulse-subtle {
     animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .countdown-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: black;
+    color: #c7f73a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .countdown-cta-btn:hover {
+    opacity: 0.85;
+    transform: scale(1.03);
   }
 </style>
